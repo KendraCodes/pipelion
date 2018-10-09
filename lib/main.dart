@@ -9,8 +9,8 @@ enum Page {
 }
 
 final Map pageSearchTerms = {
-  Page.assets: "search assets",
-  Page.posts: "search posts",
+  Page.assets: "search assets DOESN'T WORK YET",
+  Page.posts: "search posts DOESN'T WORK YET",
 };
 
 class Pipelion extends StatelessWidget {
@@ -20,14 +20,6 @@ class Pipelion extends StatelessWidget {
     return new MaterialApp(
       title: 'BYU Animation Pipelion',
       theme: new ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or press Run > Flutter Hot Reload in IntelliJ). Notice that the
-        // counter didn't reset back to zero; the application is not restarted.
         primarySwatch: Colors.green,
         backgroundColor: Colors.black12,
         bottomAppBarColor: Colors.green.shade300,
@@ -63,7 +55,6 @@ class _MyHomePageState extends State<MyHomePage> {
     _topBar = new TopBar();
   }
 
-//  int _counter = 0;
   bool _showFilters;
   Page _currentPage;
 
