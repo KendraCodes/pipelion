@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'top_bar.dart';
 import 'cards.dart';
 import 'model.dart';
+<<<<<<< HEAD
 import 'main_list_view.dart';
+=======
+>>>>>>> 73fdd6185f8009482c3cd0b4debd06155207f6d7
 
 void main() => runApp(new Pipelion());
 
@@ -104,7 +107,12 @@ class _MyHomePageState extends State<MyHomePage> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 _topBar,
+<<<<<<< HEAD
                 _mainListView,
+=======
+                NotificationCard(NotificationData(true)),
+                NotificationCard(NotificationData(false)),
+>>>>>>> 73fdd6185f8009482c3cd0b4debd06155207f6d7
               ],
             ),
           ),
