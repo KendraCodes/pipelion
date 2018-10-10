@@ -95,10 +95,10 @@ class _MyHomePageState extends State<MyHomePage> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 _topBar,
-            new Text(
-              _searchText,
-              style: Theme.of(context).textTheme.display1,
-            ),
+                new Text(
+                  _searchText,
+                  style: Theme.of(context).textTheme.display1,
+                ),
               ],
             ),
           ),
