@@ -3,9 +3,11 @@ import 'main.dart';
 import 'model.dart';
 
 class MainListView extends StatefulWidget {
-  MainListView(List<CardModel> list) {
-    myState._setList(list);
+  MainListView(List<String> list) {
+    mainList = list;
   }
+
+  List<String> mainList;
 
   void setCurrentPage(Page page) {
     myState._setCurrentPage(page);
@@ -19,15 +21,16 @@ class MainListView extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    myState = new _MainListViewState();
+    myState = new _MainListViewState(mainList);
     return myState;
   }
 }
 
 class _MainListViewState extends State<MainListView> {
 
-  _MainListViewState() {
+  _MainListViewState(List<String> list) {
     currentPage = Page.posts;
+    mainList = list;
   }
 
   void _setCurrentPage(Page page) {
@@ -36,22 +39,31 @@ class _MainListViewState extends State<MainListView> {
     });
   }
 
-    void _setList(List<CardModel> list) {
+    void _setList(List<String> list) {
       setState(() {
-        cardModel = list;
+        mainList = list;
       });
   }
 
   Page currentPage;
-  List<CardModel> cardModel;
+  List<String> mainList;
 
   @override
   Widget build(BuildContext context) {
     if (currentPage == Page.posts) {
+      return new Expanded(
+        child: new ListView.builder(
+          padding: new EdgeInsets.all(8.0),
+          itemCount: mainList.length,
+          itemBuilder: (BuildContext context, int index) {
+            return new Text(mainList[index]);
+          },
+        )
+      );
     } else if (currentPage == Page.assets) {
-
+      
     } else if (currentPage == Page.notifications) {
-
+      
     }
   }
 

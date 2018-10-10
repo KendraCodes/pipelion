@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'top_bar.dart';
+import 'main_list_view.dart';
+import 'model.dart';
 
 void main() => runApp(new Pipelion());
 
@@ -40,12 +42,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
+  final items = List<String>.generate(20, (i) => "Item $i");
   _MyHomePageState() {
     _showFilters = false;
     _currentPage = Page.posts;
     _searchText = "default search text";
     _topBar = new TopBar(_updateSearch);
+    _mainListView = new MainListView(items);
   }
 
   bool _showFilters;
@@ -53,6 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String _searchText;
 
   TopBar _topBar;
+  MainListView _mainListView;
 
   void _updateSearch(String searchText) {
     setState(() {
@@ -95,10 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 _topBar,
-                new Text(
-                  _searchText,
-                  style: Theme.of(context).textTheme.display1,
-                ),
+                _mainListView,
               ],
             ),
           ),
