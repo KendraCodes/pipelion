@@ -105,8 +105,6 @@ class _MyHomePageState extends State<MyHomePage> {
               children: <Widget>[
                 _topBar,
                 _mainListView,
-                NotificationCard(NotificationData(true)),
-                NotificationCard(NotificationData(false)),
               ],
             ),
           ),

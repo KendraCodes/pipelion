@@ -26,7 +26,7 @@ class NotificationCardState extends State<NotificationCard> {
   Widget build(BuildContext context) {
     BorderSide blackLine = new BorderSide(
       color: Colors.black54,
-      width: 2.0,
+      width: 1.0,
     );
     Color myColor = n.clicked ? Colors.white : Theme.of(context).bottomAppBarColor;
     return Container(
@@ -36,6 +36,7 @@ class NotificationCardState extends State<NotificationCard> {
         color: myColor,
         border: new Border(
           bottom: blackLine,
+          top: new BorderSide(width:0.0,),
         ),
       ),
 //        color: Colors.white,
