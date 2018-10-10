@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'json_loader.dart';
 import 'main.dart';
 
 enum ContentAPI {
@@ -15,11 +16,39 @@ class ModelManager {
       return artists[artist_id];
     } else {
       ArtistData artist = loadArtist(artist_id);
-      if (artist) {
+      if (artist ?? false) {
         artists[artist_id] = artist;
+      } else {
+        return null;
       }
     }
-  }  
+  }
+
+  PostData GetPost(String post_id) {
+    if (posts.containsKey(post_id)) {
+      return posts[post_id];
+    } else {
+      PostData post = loadPost(post_id);
+      if (post ?? false) {
+        posts[post_id] = post;
+      } else {
+        return null;
+      }
+    }
+  }
+
+  AssetData GetAsset(String asset_id) {
+    if (assets.containsKey(asset_id)) {
+      return assets[asset_id];
+    } else {
+      AssetData asset = loadAsset(asset_id);
+      if (asset ?? false) {
+        assets[asset_id] = asset;
+      } else {
+        return null;
+      }
+    }
+  }
 }
 
 class ArtistData {
