@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'main.dart';
 import 'model.dart';
+import 'cards.dart';
 
 class MainListView extends StatefulWidget {
-  MainListView(List<String> list) {
+  MainListView(List<NotificationData> list) {
     mainList = list;
   }
 
-  List<String> mainList;
+  List<NotificationData> mainList;
 
   void setCurrentPage(Page page) {
     myState._setCurrentPage(page);
@@ -28,7 +29,7 @@ class MainListView extends StatefulWidget {
 
 class _MainListViewState extends State<MainListView> {
 
-  _MainListViewState(List<String> list) {
+  _MainListViewState(List<NotificationData> list) {
     currentPage = Page.posts;
     mainList = list;
   }
@@ -39,31 +40,31 @@ class _MainListViewState extends State<MainListView> {
     });
   }
 
-    void _setList(List<String> list) {
+    void _setList(List<NotificationData> list) {
       setState(() {
         mainList = list;
       });
   }
 
   Page currentPage;
-  List<String> mainList;
+  List<NotificationData> mainList;
 
   @override
   Widget build(BuildContext context) {
     if (currentPage == Page.posts) {
+      return new Container();
+    } else if (currentPage == Page.assets) {
+      return new Container();
+      
+    } else if (currentPage == Page.notifications) {
       return new Expanded(
         child: new ListView.builder(
-          padding: new EdgeInsets.all(8.0),
           itemCount: mainList.length,
           itemBuilder: (BuildContext context, int index) {
-            return new Text(mainList[index]);
+            return new NotificationCard(mainList[index]);
           },
         )
       );
-    } else if (currentPage == Page.assets) {
-      
-    } else if (currentPage == Page.notifications) {
-      
     }
   }
 

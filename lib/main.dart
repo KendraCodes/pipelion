@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'top_bar.dart';
-import 'main_list_view.dart';
+import 'cards.dart';
 import 'model.dart';
+import 'main_list_view.dart';
 
 void main() => runApp(new Pipelion());
 
@@ -25,6 +26,7 @@ class Pipelion extends StatelessWidget {
       theme: new ThemeData(
         primarySwatch: Colors.green,
         backgroundColor: Colors.black12,
+        selectedRowColor: Colors.green.shade300,
         bottomAppBarColor: Colors.green.shade300,
       ),
       home: new MyHomePage(title: 'Pipelion Home'),
@@ -42,7 +44,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final items = List<String>.generate(20, (i) => "Item $i");
+  final items = List<NotificationData>.generate(20, (i) => NotificationData(i % 2 == 1));
   _MyHomePageState() {
     _showFilters = false;
     _currentPage = Page.posts;
@@ -68,6 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _currentPage = Page.posts;
       _topBar.setCurrentPage(_currentPage);
+      _mainListView.setCurrentPage(_currentPage);
     });
   }
 
@@ -75,6 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _currentPage = Page.notifications;
       _topBar.setCurrentPage(_currentPage);
+      _mainListView.setCurrentPage(_currentPage);
     });
   }
 
@@ -82,6 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _currentPage = Page.assets;
       _topBar.setCurrentPage(_currentPage);
+      _mainListView.setCurrentPage(_currentPage);
     });
   }
 
@@ -100,6 +105,8 @@ class _MyHomePageState extends State<MyHomePage> {
               children: <Widget>[
                 _topBar,
                 _mainListView,
+                NotificationCard(NotificationData(true)),
+                NotificationCard(NotificationData(false)),
               ],
             ),
           ),
