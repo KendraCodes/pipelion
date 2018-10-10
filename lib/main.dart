@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'top_bar.dart';
+import 'cards.dart';
+import 'model.dart';
 
 void main() => runApp(new Pipelion());
 
@@ -23,6 +25,7 @@ class Pipelion extends StatelessWidget {
       theme: new ThemeData(
         primarySwatch: Colors.green,
         backgroundColor: Colors.black12,
+        selectedRowColor: Colors.green.shade300,
         bottomAppBarColor: Colors.green.shade300,
       ),
       home: new MyHomePage(title: 'Pipelion Home'),
@@ -95,10 +98,8 @@ class _MyHomePageState extends State<MyHomePage> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 _topBar,
-                new Text(
-                  _searchText,
-                  style: Theme.of(context).textTheme.display1,
-                ),
+                NotificationCard(NotificationData(true)),
+                NotificationCard(NotificationData(false)),
               ],
             ),
           ),
