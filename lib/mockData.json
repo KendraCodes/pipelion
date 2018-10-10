@@ -1,0 +1,284 @@
+{
+  "assets": [
+    {
+      "id": "H3RB678fFH",
+      "thumbnail": "thumbnails/Grendel.png",
+      "name": "Grendel",
+      "post_ids": [
+        "0",
+        "1",
+        "10",
+        "11",
+        "13"
+      ],
+      "departments": [
+        "visdev",
+        "rigging",
+        "cfx",
+        "modeling",
+        "materials"
+      ]
+    },
+    {
+      "id": "UNR6HF8BFH",
+      "thumbnail": "thumbnails/CookieViking.png",
+      "name": "Cookie_Viking",
+      "post_ids": [
+        "5",
+        "7"
+      ],
+      "departments": [
+        "rigging",
+        "cfx",
+        "modeling",
+        "materials"
+      ]
+    },
+    {
+      "id": "QG8YUB6JO9",
+      "thumbnail": "thumbnails/Meadhall.png",
+      "name": "Meadhall",
+      "post_ids": [
+        "8",
+        "9"
+      ],
+      "departments": [
+        "modeling",
+        "materials",
+        "set_dressing"
+      ]
+    },
+    {
+      "id": "KJ81LL9RE0",
+      "thumbnail": "thumbnails/E004.png",
+      "name": "Shot_E004",
+      "post_ids": [
+        "2",
+        "3"
+      ],
+      "departments": [
+        "animation",
+        "vfx",
+        "lighting"
+      ]
+    },
+    {
+      "id": "V97BJH34KH",
+      "thumbnail": "thumbnails/Bed.png",
+      "name": "Grendel_Bed",
+      "post_ids": [
+        "12"
+      ],
+      "departments": [
+        "modeling",
+        "materials"
+      ]
+    },
+    {
+      "id": "XZS13KHU98",
+      "thumbnail": "thumbnails/C009.png",
+      "name": "Shot_C009",
+      "post_ids": [
+        "4"
+      ],
+      "departments": [
+        "set_dressing",
+        "animation"
+      ]
+    },
+    {
+      "id": "PERT743561",
+      "thumbnail": "thumbnails/Blanket.jpg",
+      "name": "Couch_Blanket",
+      "post_ids": [
+        "6"
+      ],
+      "departments": [
+        "modeling",
+        "materials"
+      ]
+    }
+  ],
+  "posts": [
+    {
+      "id": "0",
+      "artist_id": "0",
+      "asset_id": "H3RB678fFH",
+      "content_api": "Cory",
+      "content_id": "content/A004.png",
+      "department": "materials",
+      "timestamp": "2018-07-09 20:19:04Z",
+      "slack_link": "https://pipelion.slack.com/messages/CCLEGUTJL"
+    },
+    {
+      "post_id": "1",
+      "artist_id": "1",
+      "asset_id": "H3RB678fFH",
+      "content_api": "Cory",
+      "content_id": "content/C014.png",
+      "department": "cfx",
+      "timestamp": "2018-08-06 17:01:33Z",
+      "slack_link": "https://pipelion.slack.com/messages/CCLEGUTJL"
+    },
+    {
+      "post_id": "2",
+      "artist_id": "2",
+      "asset_id": "KJ81LL9RE0",
+      "content_api": "Cory",
+      "content_id": "content/E020.png",
+      "department": "vfx",
+      "timestamp": "2018-08-08 10:02:01Z",
+      "slack_link": "https://pipelion.slack.com/messages/CCLEGUTJL"
+    },
+    {
+      "post_id": "3",
+      "artist_id": "2",
+      "asset_id": "KJ81LL9RE0",
+      "content_api": "Cory",
+      "content_id": "content/E04.png",
+      "department": "lighting",
+      "timestamp": "2018-08-08 18:23:11Z",
+      "slack_link": "https://pipelion.slack.com/messages/CCLEGUTJL"
+    },
+    {
+      "post_id": "4",
+      "artist_id": "3",
+      "asset_id": "XZS13KHU98",
+      "content_api": "Cory",
+      "content_id": "content/C028.png",
+      "department": "set_dressing",
+      "timestamp": "2018-08-12 01:22:00Z",
+      "slack_link": "https://pipelion.slack.com/messages/CCLEGUTJL"
+    },
+    {
+      "post_id": "5",
+      "artist_id": "3",
+      "asset_id": "UNR6HF8BFH",
+      "content_api": "Cory",
+      "content_id": "content/H011.png",
+      "department": "cfx",
+      "timestamp": "2018-09-15 14:09:00Z",
+      "slack_link": "https://pipelion.slack.com/messages/CCLEGUTJL"
+    },
+    {
+      "post_id": "6",
+      "artist_id": "0",
+      "asset_id": "PERT743561",
+      "content_api": "Cory",
+      "content_id": "content/cloth02.jpg",
+      "department": "materials",
+      "timestamp": "2018-09-17 18:29:00Z",
+      "slack_link": "https://pipelion.slack.com/messages/CCLEGUTJL"
+    },
+    {
+      "post_id": "7",
+      "artist_id": "3",
+      "asset_id": "UNR6HF8BFH",
+      "content_api": "Cory",
+      "content_id": "content/B026.png",
+      "department": "rigging",
+      "timestamp": "2018-09-18 15:49:00Z",
+      "slack_link": "https://pipelion.slack.com/messages/CCLEGUTJL"
+    },
+    {
+      "post_id": "8",
+      "artist_id": "1",
+      "asset_id": "QG8YUB6JO9",
+      "content_api": "Cory",
+      "content_id": "content/MeadhallAssets.gif",
+      "department": "modeling",
+      "timestamp": "2018-09-28 11:11:00Z",
+      "slack_link": "https://pipelion.slack.com/messages/CCLEGUTJL"
+    },
+    {
+      "post_id": "9",
+      "artist_id": "2",
+      "asset_id": "QG8YUB6JO9",
+      "content_api": "Cory",
+      "content_id": "content/A008.png",
+      "department": "materials",
+      "timestamp": "2018-10-02 14:41:00Z",
+      "slack_link": "https://pipelion.slack.com/messages/CCLEGUTJL"
+    },
+    {
+      "post_id": "10",
+      "artist_id": "3",
+      "asset_id": "H3RB678fFH",
+      "content_api": "Cory",
+      "content_id": "content/B022.png",
+      "department": "materials",
+      "timestamp": "2018-10-06 12:01:00Z",
+      "slack_link": "https://pipelion.slack.com/messages/CCLEGUTJL"
+    },
+    {
+      "post_id": "11",
+      "artist_id": "0",
+      "asset_id": "H3RB678fFH",
+      "content_api": "Cory",
+      "content_id": "content/B029.png",
+      "department": "rigging",
+      "timestamp": "2018-10-08 15:01:00Z",
+      "slack_link": "https://pipelion.slack.com/messages/CCLEGUTJL"
+    },
+    {
+      "post_id": "12",
+      "artist_id": "2",
+      "asset_id": "V97BJH34KH",
+      "content_api": "Cory",
+      "content_id": "content/C002.png",
+      "department": "modeling",
+      "timestamp": "2018-10-09 16:01:00Z",
+      "slack_link": "https://pipelion.slack.com/messages/CCLEGUTJL"
+    },
+    {
+      "post_id": "13",
+      "artist_id": "3",
+      "asset_id": "H3RB678fFH",
+      "content_api": "Cory",
+      "content_id": "content/C018.png",
+      "department": "materials",
+      "timestamp": "2018-10-09 17:31:00Z",
+      "slack_link": "https://pipelion.slack.com/messages/CCLEGUTJL"
+    }
+  ],
+  "artists": [
+    {
+      "id": "0",
+      "name": "Kendra_Graham",
+      "thumbnail": "/user_thumbnails/no_user_icon.png"
+    },
+    {
+      "id": "1",
+      "name": "Ben_DeMann",
+      "thumbnail": "/user_thumbnails/BenDMann.png"
+    },
+    {
+      "id": "2",
+      "name": "Cory_Sivek",
+      "thumbnail": "/user_thumbnails/CoryS.png"
+    },
+    {
+      "id": "3",
+      "name": "Hunter_Tinney",
+      "thumbnail": "/user_thumbnails/HunterTinney.png"
+    }
+  ],
+  "userSettings": {
+    "artist_id": "0",
+    "watched_asset_id": [
+      "H3RB678fFH",
+      "V97BJH34KH"
+    ]
+  },
+  "departments": [
+    "visdev",
+    "modeling",
+    "rigging",
+    "materials",
+    "set_dressing",
+    "cfx",
+    "animation",
+    "vfx",
+    "lighting"
+  ]
+}
