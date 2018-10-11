@@ -6,33 +6,39 @@ enum ContentAPI {
   CORY, VIMEO, SLACK, SKETCHFAB
 }
 
-class ViewModel { //MAKE SINGLETON
+class ViewModel { 
+  static final ViewModel _singleton = new ViewModel._internal();
+
   List<PostData> _posts;
   List<AssetData> _assets;
   List<NotificationData> _notifications;
   List<PostData> _focusedPosts;
 
-  ModelManager() {
+  factory ViewModel() {
+    return _singleton;
+  }
+
+  ViewModel._internal() {
     _notifications = new List<NotificationData>();
     _posts = new List<PostData>();
     _assets = new List<AssetData>();
     _focusedPosts = new List<PostData>();
   }
 
-  void getPosts(List<String> filters) {
+  void populatePosts(List<String> filters) {
     _posts = loadPosts(filters);
   }
 
-  void getFocusedPosts(String filter) {
+  void populateFocusedPosts(String filter) {
     List<String> filters = [filter];
     _focusedPosts = loadPosts(filters);
   }
 
-  void getAssets(List<String> filters) {
+  void populateAssets(List<String> filters) {
     _assets = loadAssets(filters);
   }
 
-  void getNotifications(String userID) {
+  void populateNotifications(String userID) {
     _notifications = loadNotifications(userID);
   }
 
