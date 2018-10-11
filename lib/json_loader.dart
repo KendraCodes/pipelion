@@ -1,23 +1,18 @@
 import 'model.dart';
 
 AssetData loadAsset(String assetID) {
-  return null;
+  return new AssetData();
 }
 
 PostData loadPost(String postID) {
-  return null;
+  return new PostData();
 }
 
 NotificationData loadNotification(String notificationID) {
-  return null;
+  return new NotificationData();
 }
 
-ArtistData loadArtist(String artistID) {
-  return null;
-}
-
-
-Map<String, AssetData> loadAssets() {
+List<AssetData> loadAssets(List<String> filters) {
   return [
     new AssetData(),
     new AssetData(),
@@ -25,7 +20,7 @@ Map<String, AssetData> loadAssets() {
   ];
 }
 
-Map<String, PostData> loadPosts() {
+List<PostData> loadPosts(List<String> filters) {
   return [
     new PostData(),
     new PostData(),
