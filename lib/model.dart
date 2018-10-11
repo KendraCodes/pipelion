@@ -3,7 +3,7 @@ import 'json_loader.dart';
 import 'main.dart';
 
 enum ContentAPI {
-  Cory, Vimeo, Slack, Sketchfab
+  CORY, VIMEO, SLACK, SKETCHFAB
 }
 
 class ViewModel { //MAKE SINGLETON
