@@ -6,66 +6,55 @@ enum ContentAPI {
   Cory, Vimeo, Slack, Sketchfab
 }
 
-class ModelManager {
-  Map<String, ArtistData> artists;
-  Map<String, PostData> posts;
-  Map<String, AssetData> assets;
+class ViewModel {
+  List<PostData> _posts;
+  List<AssetData> _assets;
+  List<NotificationData> _notifications;
+  List<PostData> _assetPosts;
+  List<PostData> _artistPosts;
 
-  ArtistData GetArtist(String artist_id) {
-    if (artists.containsKey(artist_id)) {
-      return artists[artist_id];
-    } else {
-      ArtistData artist = loadArtist(artist_id);
-      if (artist ?? false) {
-        artists[artist_id] = artist;
-      } else {
-        return null;
-      }
-    }
+  ModelManager() {
+    _notifications = new List<NotificationData>();
+    _posts = new List<PostData>();
+    _assets = new List<AssetData>();
+    _assetPosts = new List<PostData>();
+    _artistPosts = new List<PostData>();
   }
 
-  PostData GetPost(String post_id) {
-    if (posts.containsKey(post_id)) {
-      return posts[post_id];
-    } else {
-      PostData post = loadPost(post_id);
-      if (post ?? false) {
-        posts[post_id] = post;
-      } else {
-        return null;
-      }
-    }
+  void getPosts(List<String> filters) {
+
   }
 
-  AssetData GetAsset(String asset_id) {
-    if (assets.containsKey(asset_id)) {
-      return assets[asset_id];
-    } else {
-      AssetData asset = loadAsset(asset_id);
-      if (asset ?? false) {
-        assets[asset_id] = asset;
-      } else {
-        return null;
-      }
-    }
-  }
-}
+  void getAssets(List<String> filters) {
 
-class ArtistData {
-  String _id;
-  String _name;
-  String _thumbnail;
+  }
+
+  void getNotifications(String userID) {
+
+  }
+
 }
 
 class PostData {
   String _id;
-  String _artist_id;
-  String _asset_id;
-  ContentAPI _content_api;
+  String _artistID;
+  String _assetID;
+  ContentAPI _contentAPI;
   String _content;
   String _department;
-  DateTime timestamp;
-  String _slack_link;
+  DateTime _timestamp;
+  String _slackLink;
+
+  PostData(String id, String artistID, String assetID, ContentAPI contentAPI, String content, String department, DateTime timestamp, String slackLink) {
+    _id = id;
+    _artistID = artistID;
+    _assetID = assetID;
+    _contentAPI = contentAPI;
+    _content = content;
+    _department = department;
+    _timestamp = timestamp;
+    _slackLink = slackLink;
+  }
 
 }
 
@@ -73,30 +62,38 @@ class AssetData {
   String _id;
   String _name;
   String _thumbnail;
-  List<String> _posts_ids;
+  List<String> _postIDs;
   List<String> _departments;
+
+  AssetData(String id, String name, String thumbnail, List<String> postIDs, List<String> departments) {
+    _id = id;
+    _name = name;
+    _thumbnail = thumbnail;
+    _postIDs = postIDs;
+    _departments = departments;
+  }
   
 }
 
 class NotificationData {
-  String _artist;
-  String _department;
-  String _asset;
-  DateTime _updated;
-  bool _clicked;
+  String _id;
+  String _postID;
+  String _message;
+  DateTime _timestamp;
+  bool _isSeen;
 
-  NotificationData(bool isClicked) {
-    _artist = "Kaede";
-    _department = "modeling";
-    _asset = "Delilah";
-    _updated = new DateTime(2018, 10, 8, 15, 25, 24, 0, 0);
-    _clicked = isClicked;
+  NotificationData(String id, String postID, String message, DateTime timestamp, bool isSeen) {
+    _id = id;
+    _postID = postID;
+    _message = message;
+    _timestamp = timestamp;
+    _isSeen = isSeen;
   }
 
   String toString() {
-    return _artist + " updated " + _asset + " in " + _department;
+    return _message;
   }
 
-  bool get clicked => _clicked;
+  bool get clicked => _isSeen;
 
 }
