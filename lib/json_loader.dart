@@ -28,11 +28,11 @@ List<AssetData> loadAssets(List<String> filters) {
 
 List<PostData> loadPosts(List<String> filters) {
   return [
-    new PostData("0","HunterTinney","3",ContentAPI.CORY,"content/A004.png","modeling", DateTime.now(),"https://pipelion.slack.com/messages/CCLEGUTJL"),
-    new PostData("1","CorySivek","3",ContentAPI.CORY,"content/B026.png","modeling", DateTime.parse("2018-10-10 13:11:00Z"),"https://pipelion.slack.com/messages/CCLEGUTJL"),
-    new PostData("2","HunterTinney","3",ContentAPI.CORY,"content/A004.png","modeling", DateTime.now(),"https://pipelion.slack.com/messages/CCLEGUTJL"),
-    new PostData("3","HunterTinney","3",ContentAPI.CORY,"content/A004.png","modeling", DateTime.now(),"https://pipelion.slack.com/messages/CCLEGUTJL"),
-    new PostData("4","HunterTinney","3",ContentAPI.CORY,"content/A004.png","modeling", DateTime.now(),"https://pipelion.slack.com/messages/CCLEGUTJL")
+    new PostData("0","HunterTinney","Hunter T.","3","A004",ContentAPI.CORY,"content/A004.png","modeling", DateTime.now(),"https://pipelion.slack.com/messages/CCLEGUTJL"),
+    new PostData("1","CorySivek","Cory S.","3","B026",ContentAPI.CORY,"content/B026.png","modeling", DateTime.parse("2018-10-10 13:11:00Z"),"https://pipelion.slack.com/messages/CCLEGUTJL"),
+    new PostData("2","HunterTinney","Hunter T.","3","A004",ContentAPI.CORY,"content/A004.png","modeling", DateTime.now(),"https://pipelion.slack.com/messages/CCLEGUTJL"),
+    new PostData("3","HunterTinney","Hunter T.","3","A004",ContentAPI.CORY,"content/A004.png","modeling", DateTime.now(),"https://pipelion.slack.com/messages/CCLEGUTJL"),
+    new PostData("4","HunterTinney","Hunter T.","3","A004",ContentAPI.CORY,"content/A004.png","modeling", DateTime.now(),"https://pipelion.slack.com/messages/CCLEGUTJL")
   ];
 }
 
