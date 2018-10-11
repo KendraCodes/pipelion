@@ -10,27 +10,30 @@ class ViewModel {
   List<PostData> _posts;
   List<AssetData> _assets;
   List<NotificationData> _notifications;
-  List<PostData> _assetPosts;
-  List<PostData> _artistPosts;
+  List<PostData> _focusedPosts;
 
   ModelManager() {
     _notifications = new List<NotificationData>();
     _posts = new List<PostData>();
     _assets = new List<AssetData>();
-    _assetPosts = new List<PostData>();
-    _artistPosts = new List<PostData>();
+    _focusedPosts = new List<PostData>();
   }
 
   void getPosts(List<String> filters) {
+    _posts = loadPosts(filters);
+  }
 
+  void getFocusedPosts(String filter) {
+    List<String> filters = [filter];
+    _focusedPosts = loadPosts(filters);
   }
 
   void getAssets(List<String> filters) {
-
+    _assets = loadAssets(filters);
   }
 
   void getNotifications(String userID) {
-
+    _notifications = loadNotifications(userID);
   }
 
 }
