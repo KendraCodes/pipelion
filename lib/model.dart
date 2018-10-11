@@ -73,6 +73,19 @@ class PostData {
     _slackLink = slackLink;
   }
 
+  PostData.fromJson(Map item) {
+    _id = item["id"];
+    _artistID = item["artistID"];
+    _artistName = item["artistName"];
+    _assetID = item["assetID"];
+    _assetName = item["assetName"];
+    _contentAPI = item["contentAPI"];
+    _content = item["content"];
+    _department = item["department"];
+    _timestamp = item["timestamp"];
+    _slackLink = item["slackLink"];
+  }
+
   String get id => _id;
   String get artistID => _artistID;
   String get artistName => _artistName;
@@ -98,6 +111,14 @@ class AssetData {
     _thumbnail = thumbnail;
     _postIDs = postIDs;
     _departments = departments;
+  }
+
+  AssetData.fromJson(Map item) {
+    _id = item["id"];
+    _name = item["name"];
+    _thumbnail = item["thumbnail"];
+    _postIDs = item["postIDs"];
+    _departments = item["departments"];
   }
 
   String get id => _id;
