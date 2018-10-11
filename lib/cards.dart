@@ -2,6 +2,57 @@ import 'package:flutter/material.dart';
 import 'model.dart';
 import 'main.dart';
 
+class PostCard extends StatefulWidget {
+
+  PostCard(PostData n) {
+    data = n;
+  }
+
+  PostData data;
+
+  @override
+  State<StatefulWidget> createState() {
+    return new PostCardState(data);
+  }
+
+}
+
+class PostCardState extends State<PostCard> {
+
+  PostCardState(this.n);
+  PostData n;
+
+  @override
+  Widget build(BuildContext context) {
+    return new Card(
+      child: new Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          const ListTile(
+            leading: const Icon(Icons.album),
+            title: const Text('The Enchanted Nightingale'),
+            subtitle: const Text('Music by Julie Gable. Lyrics by Sidney Stein.'),
+          ),
+          new ButtonTheme.bar( // make buttons use the appropriate styles for cards
+            child: new ButtonBar(
+              children: <Widget>[
+                new FlatButton(
+                  child: const Text('BUY TICKETS'),
+                  onPressed: () { /* ... */ },
+                ),
+                new FlatButton(
+                  child: const Text('LISTEN'),
+                  onPressed: () { /* ... */ },
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class NotificationCard extends StatefulWidget {
 
   NotificationCard(NotificationData n) {
@@ -53,3 +104,4 @@ class NotificationCardState extends State<NotificationCard> {
     );
   }
 }
+

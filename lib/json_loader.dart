@@ -28,7 +28,7 @@ List<PostData> loadPosts(List<String> filters) {
   ];
 }
 
-Map<String, NotificationData> loadNotifications() {
+List<NotificationData> loadNotifications(String userID) {
   return [
     new NotificationData(),
     new NotificationData(),
