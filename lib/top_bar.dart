@@ -57,13 +57,9 @@ class TopBarState extends State<TopBar> {
 //        margin: const EdgeInsets.all(15.0),
 //        padding: const EdgeInsets.all(3.0),
         decoration: new BoxDecoration(
+          
           color: Colors.white,
-          border: new Border(
-            bottom: new BorderSide(
-              color: Colors.black,
-              width: 1.0,
-            )
-          ),
+          border: new  Border(bottom: new BorderSide(color: Theme.of(context).dividerColor)),
         ),
 //        color: Colors.white,
         height: 70.0,
@@ -72,7 +68,7 @@ class TopBarState extends State<TopBar> {
           children: [
             Text(
               "Notifications",
-              style: new TextStyle(fontSize: 16.0),
+              style: new TextStyle(fontSize: 20.0),
             ),
           ]
         ),

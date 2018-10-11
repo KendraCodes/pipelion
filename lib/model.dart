@@ -121,5 +121,5 @@ class NotificationData {
   }
 
   bool get clicked => _isSeen;
-
+  DateTime get timestamp => _timestamp;
 }

@@ -288,34 +288,49 @@ class NotificationCardState extends State<NotificationCard> {
   NotificationCardState(this.n);
   NotificationData n;
 
+  CachedNetworkImage getUserThumbnail() {
+    return CachedNetworkImage(
+      imageUrl: "http://students.cs.byu.edu/~csivek/pipelion/user_thumbnails/" + "CorySivek" + ".png",
+      placeholder: new CircularProgressIndicator(),
+      errorWidget: new Icon(Icons.error),
+      width:50.0,
+      height: 50.0);
+  }
+
   @override
   Widget build(BuildContext context) {
-    BorderSide blackLine = new BorderSide(
-      color: Colors.black54,
-      width: 1.0,
-    );
-    Color myColor = n.clicked ? Colors.white : Theme.of(context).bottomAppBarColor;
+    Color myColor = n.clicked ? Colors.white : Colors.green[100];
     return Container(
 //        margin: const EdgeInsets.all(15.0),
 //        padding: const EdgeInsets.all(3.0),
       decoration: new BoxDecoration(
         color: myColor,
-        border: new Border(
-          bottom: blackLine,
-          top: new BorderSide(width:0.0,),
-        ),
+        border: new  Border(bottom: new BorderSide(color: Theme.of(context).dividerColor)),
       ),
 //        color: Colors.white,
-      height: 50.0,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+      child: ListTile(
+        contentPadding: EdgeInsets.symmetric(horizontal:8.0),
+        leading: Container(width: 50.0,child: Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[getUserThumbnail()])),
+        title:Text(n.toString(),style: new TextStyle(fontSize: 14.0),),
+        subtitle:  Text(timeago.format(n.timestamp),style: new TextStyle(fontSize: 12.0),),
+        )
+      
+      /*Row(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Text(
-            n.toString(),
-            style: new TextStyle(fontSize: 14.0),
-          ),
+          
+          Padding(padding:EdgeInsets.symmetric(horizontal:8.0),child:getUserThumbnail()),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget> [
+              Text(n.toString(),style: new TextStyle(fontSize: 14.0),),
+              Text(timeago.format(n.timestamp),style: new TextStyle(fontSize: 12.0),)
+            ]
+          )
         ]
       ),
+      */
     );
   }
 }
