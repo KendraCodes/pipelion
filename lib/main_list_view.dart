@@ -55,7 +55,7 @@ class _MainListViewState extends State<MainListView> {
       return new Container();
     } else if (currentPage == Page.assets) {
       return new Container();
-      
+
     } else if (currentPage == Page.notifications) {
       return new Expanded(
         child: new ListView.builder(
