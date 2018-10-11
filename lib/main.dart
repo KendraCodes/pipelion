@@ -46,6 +46,10 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final items = List<NotificationData>.generate(20, (i) => NotificationData(i.toString(), null, "Kaede updated Grendel in Modeling", DateTime.now(), i % 2 == 1));
   _MyHomePageState() {
+    viewModel.populateAssets([]);
+    viewModel.populatePosts([]);
+    viewModel.populateNotifications("");
+
     _showFilters = false;
     _currentPage = Page.posts;
     _searchText = "default search text";

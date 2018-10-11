@@ -31,37 +31,43 @@ class _MainListViewState extends State<MainListView> {
 
   _MainListViewState(List<NotificationData> list) {
     currentPage = Page.posts;
-    mainList = list;
   }
 
   void _setCurrentPage(Page page) {
     setState(() {
       currentPage = page;
+      
     });
   }
 
-    void _setList(List<NotificationData> list) {
-      setState(() {
-        mainList = list;
-      });
-  }
-
   Page currentPage;
-  List<NotificationData> mainList;
-
   @override
   Widget build(BuildContext context) {
     if (currentPage == Page.posts) {
-      return new Container();
+      return new Expanded(
+        child: new ListView.builder(
+          itemCount: viewModel.posts.length,
+          itemBuilder: (BuildContext context, int index) {
+            return new PostCard(viewModel.posts[index]);
+          },
+        )
+      );
     } else if (currentPage == Page.assets) {
-      return new Container();
+      return new Expanded(
+        child: new ListView.builder(
+          itemCount: viewModel.assets.length,
+          itemBuilder: (BuildContext context, int index) {
+            return new AssetCard(viewModel.assets[index]);
+          },
+        )
+      );
 
     } else if (currentPage == Page.notifications) {
       return new Expanded(
         child: new ListView.builder(
-          itemCount: mainList.length,
+          itemCount: viewModel.notifications.length,
           itemBuilder: (BuildContext context, int index) {
-            return new NotificationCard(mainList[index]);
+            return new NotificationCard(viewModel.notifications[index]);
           },
         )
       );

@@ -1,3 +1,4 @@
+library viewModel;
 import 'package:flutter/material.dart';
 import 'json_loader.dart';
 import 'main.dart';
@@ -6,19 +7,16 @@ enum ContentAPI {
   CORY, VIMEO, SLACK, SKETCHFAB
 }
 
+var viewModel = new ViewModel();
+
 class ViewModel { 
-  static final ViewModel _singleton = new ViewModel._internal();
 
   List<PostData> _posts;
   List<AssetData> _assets;
   List<NotificationData> _notifications;
   List<PostData> _focusedPosts;
 
-  factory ViewModel() {
-    return _singleton;
-  }
-
-  ViewModel._internal() {
+  ViewModel() {
     _notifications = new List<NotificationData>();
     _posts = new List<PostData>();
     _assets = new List<AssetData>();
@@ -41,6 +39,11 @@ class ViewModel {
   void populateNotifications(String userID) {
     _notifications = loadNotifications(userID);
   }
+
+  List<PostData> get posts => _posts;
+  List<AssetData> get assets => _assets;
+  List<NotificationData> get notifications => _notifications;
+  List<PostData> get focusedPosts => _focusedPosts;
 
 }
 

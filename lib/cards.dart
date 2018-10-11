@@ -18,7 +18,7 @@ class AssetCard extends StatefulWidget {
 
 }
 
-class AssetCardState extends State<PostCard> {
+class AssetCardState extends State<AssetCard> {
 
   AssetCardState(this.n);
   AssetData n;
