@@ -68,6 +68,14 @@ class PostData {
     _slackLink = slackLink;
   }
 
+  String get id => _id;
+  String get artistID => _artistID;
+  String get assetID => _assetID;
+  ContentAPI get contentAPI => _contentAPI;
+  String get content => _content;
+  String get department => _department;
+  DateTime get timestamp => _timestamp;
+  String get slackLink => _slackLink;
 }
 
 class AssetData {
