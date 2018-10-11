@@ -6,7 +6,7 @@ enum ContentAPI {
   Cory, Vimeo, Slack, Sketchfab
 }
 
-class ViewModel {
+class ViewModel { //MAKE SINGLETON
   List<PostData> _posts;
   List<AssetData> _assets;
   List<NotificationData> _notifications;

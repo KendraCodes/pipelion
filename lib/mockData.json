@@ -4,7 +4,7 @@
       "id": "H3RB678fFH",
       "thumbnail": "thumbnails/Grendel.png",
       "name": "Grendel",
-      "post_ids": [
+      "postIDs": [
         "0",
         "1",
         "10",
@@ -23,7 +23,7 @@
       "id": "UNR6HF8BFH",
       "thumbnail": "thumbnails/CookieViking.png",
       "name": "Cookie_Viking",
-      "post_ids": [
+      "postIDs": [
         "5",
         "7"
       ],
@@ -38,7 +38,7 @@
       "id": "QG8YUB6JO9",
       "thumbnail": "thumbnails/Meadhall.png",
       "name": "Meadhall",
-      "post_ids": [
+      "postIDs": [
         "8",
         "9"
       ],
@@ -52,7 +52,7 @@
       "id": "KJ81LL9RE0",
       "thumbnail": "thumbnails/E004.png",
       "name": "Shot_E004",
-      "post_ids": [
+      "postIDs": [
         "2",
         "3"
       ],
@@ -66,7 +66,7 @@
       "id": "V97BJH34KH",
       "thumbnail": "thumbnails/Bed.png",
       "name": "Grendel_Bed",
-      "post_ids": [
+      "postIDs": [
         "12"
       ],
       "departments": [
@@ -78,7 +78,7 @@
       "id": "XZS13KHU98",
       "thumbnail": "thumbnails/C009.png",
       "name": "Shot_C009",
-      "post_ids": [
+      "postIDs": [
         "4"
       ],
       "departments": [
@@ -90,7 +90,7 @@
       "id": "PERT743561",
       "thumbnail": "thumbnails/Blanket.jpg",
       "name": "Couch_Blanket",
-      "post_ids": [
+      "postIDs": [
         "6"
       ],
       "departments": [
@@ -102,165 +102,143 @@
   "posts": [
     {
       "id": "0",
-      "artist_id": "0",
-      "asset_id": "H3RB678fFH",
-      "content_api": "Cory",
-      "content_id": "content/A004.png",
+      "artistID": "KendraGraham",
+      "assetID": "H3RB678fFH",
+      "contentAPI": "Cory",
+      "contentID": "content/A004.png",
       "department": "materials",
       "timestamp": "2018-07-09 20:19:04Z",
-      "slack_link": "https://pipelion.slack.com/messages/CCLEGUTJL"
-    },
-    {
-      "post_id": "1",
-      "artist_id": "1",
-      "asset_id": "H3RB678fFH",
-      "content_api": "Cory",
-      "content_id": "content/C014.png",
-      "department": "cfx",
-      "timestamp": "2018-08-06 17:01:33Z",
-      "slack_link": "https://pipelion.slack.com/messages/CCLEGUTJL"
-    },
-    {
-      "post_id": "2",
-      "artist_id": "2",
-      "asset_id": "KJ81LL9RE0",
-      "content_api": "Cory",
-      "content_id": "content/E020.png",
-      "department": "vfx",
-      "timestamp": "2018-08-08 10:02:01Z",
-      "slack_link": "https://pipelion.slack.com/messages/CCLEGUTJL"
-    },
-    {
-      "post_id": "3",
-      "artist_id": "2",
-      "asset_id": "KJ81LL9RE0",
-      "content_api": "Cory",
-      "content_id": "content/E04.png",
-      "department": "lighting",
-      "timestamp": "2018-08-08 18:23:11Z",
-      "slack_link": "https://pipelion.slack.com/messages/CCLEGUTJL"
-    },
-    {
-      "post_id": "4",
-      "artist_id": "3",
-      "asset_id": "XZS13KHU98",
-      "content_api": "Cory",
-      "content_id": "content/C028.png",
-      "department": "set_dressing",
-      "timestamp": "2018-08-12 01:22:00Z",
-      "slack_link": "https://pipelion.slack.com/messages/CCLEGUTJL"
-    },
-    {
-      "post_id": "5",
-      "artist_id": "3",
-      "asset_id": "UNR6HF8BFH",
-      "content_api": "Cory",
-      "content_id": "content/H011.png",
-      "department": "cfx",
-      "timestamp": "2018-09-15 14:09:00Z",
-      "slack_link": "https://pipelion.slack.com/messages/CCLEGUTJL"
-    },
-    {
-      "post_id": "6",
-      "artist_id": "0",
-      "asset_id": "PERT743561",
-      "content_api": "Cory",
-      "content_id": "content/cloth02.jpg",
-      "department": "materials",
-      "timestamp": "2018-09-17 18:29:00Z",
-      "slack_link": "https://pipelion.slack.com/messages/CCLEGUTJL"
-    },
-    {
-      "post_id": "7",
-      "artist_id": "3",
-      "asset_id": "UNR6HF8BFH",
-      "content_api": "Cory",
-      "content_id": "content/B026.png",
-      "department": "rigging",
-      "timestamp": "2018-09-18 15:49:00Z",
-      "slack_link": "https://pipelion.slack.com/messages/CCLEGUTJL"
-    },
-    {
-      "post_id": "8",
-      "artist_id": "1",
-      "asset_id": "QG8YUB6JO9",
-      "content_api": "Cory",
-      "content_id": "content/MeadhallAssets.gif",
-      "department": "modeling",
-      "timestamp": "2018-09-28 11:11:00Z",
-      "slack_link": "https://pipelion.slack.com/messages/CCLEGUTJL"
-    },
-    {
-      "post_id": "9",
-      "artist_id": "2",
-      "asset_id": "QG8YUB6JO9",
-      "content_api": "Cory",
-      "content_id": "content/A008.png",
-      "department": "materials",
-      "timestamp": "2018-10-02 14:41:00Z",
-      "slack_link": "https://pipelion.slack.com/messages/CCLEGUTJL"
-    },
-    {
-      "post_id": "10",
-      "artist_id": "3",
-      "asset_id": "H3RB678fFH",
-      "content_api": "Cory",
-      "content_id": "content/B022.png",
-      "department": "materials",
-      "timestamp": "2018-10-06 12:01:00Z",
-      "slack_link": "https://pipelion.slack.com/messages/CCLEGUTJL"
-    },
-    {
-      "post_id": "11",
-      "artist_id": "0",
-      "asset_id": "H3RB678fFH",
-      "content_api": "Cory",
-      "content_id": "content/B029.png",
-      "department": "rigging",
-      "timestamp": "2018-10-08 15:01:00Z",
-      "slack_link": "https://pipelion.slack.com/messages/CCLEGUTJL"
-    },
-    {
-      "post_id": "12",
-      "artist_id": "2",
-      "asset_id": "V97BJH34KH",
-      "content_api": "Cory",
-      "content_id": "content/C002.png",
-      "department": "modeling",
-      "timestamp": "2018-10-09 16:01:00Z",
-      "slack_link": "https://pipelion.slack.com/messages/CCLEGUTJL"
-    },
-    {
-      "post_id": "13",
-      "artist_id": "3",
-      "asset_id": "H3RB678fFH",
-      "content_api": "Cory",
-      "content_id": "content/C018.png",
-      "department": "materials",
-      "timestamp": "2018-10-09 17:31:00Z",
-      "slack_link": "https://pipelion.slack.com/messages/CCLEGUTJL"
-    }
-  ],
-  "artists": [
-    {
-      "id": "0",
-      "name": "Kendra_Graham",
-      "thumbnail": "/user_thumbnails/no_user_icon.png"
+      "slackLink": "https://pipelion.slack.com/messages/CCLEGUTJL"
     },
     {
       "id": "1",
-      "name": "Ben_DeMann",
-      "thumbnail": "/user_thumbnails/BenDMann.png"
+      "artistID": "BenDeMann",
+      "assetID": "H3RB678fFH",
+      "contentAPI": "Cory",
+      "contentID": "content/C014.png",
+      "department": "cfx",
+      "timestamp": "2018-08-06 17:01:33Z",
+      "slackLink": "https://pipelion.slack.com/messages/CCLEGUTJL"
     },
     {
       "id": "2",
-      "name": "Cory_Sivek",
-      "thumbnail": "/user_thumbnails/CoryS.png"
+      "artistID": "CorySivek",
+      "assetID": "KJ81LL9RE0",
+      "contentAPI": "Cory",
+      "contentID": "content/E020.png",
+      "department": "vfx",
+      "timestamp": "2018-08-08 10:02:01Z",
+      "slackLink": "https://pipelion.slack.com/messages/CCLEGUTJL"
     },
     {
       "id": "3",
-      "name": "Hunter_Tinney",
-      "thumbnail": "/user_thumbnails/HunterTinney.png"
+      "artistID": "CorySivek",
+      "assetID": "KJ81LL9RE0",
+      "contentAPI": "Cory",
+      "contentID": "content/E04.png",
+      "department": "lighting",
+      "timestamp": "2018-08-08 18:23:11Z",
+      "slackLink": "https://pipelion.slack.com/messages/CCLEGUTJL"
+    },
+    {
+      "id": "4",
+      "artistID": "HunterTinney",
+      "assetID": "XZS13KHU98",
+      "contentAPI": "Cory",
+      "contentID": "content/C028.png",
+      "department": "set_dressing",
+      "timestamp": "2018-08-12 01:22:00Z",
+      "slackLink": "https://pipelion.slack.com/messages/CCLEGUTJL"
+    },
+    {
+      "id": "5",
+      "artistID": "HunterTinney",
+      "assetID": "UNR6HF8BFH",
+      "contentAPI": "Cory",
+      "contentID": "content/H011.png",
+      "department": "cfx",
+      "timestamp": "2018-09-15 14:09:00Z",
+      "slackLink": "https://pipelion.slack.com/messages/CCLEGUTJL"
+    },
+    {
+      "id": "6",
+      "artistID": "KendraGraham",
+      "assetID": "PERT743561",
+      "contentAPI": "Cory",
+      "contentID": "content/cloth02.jpg",
+      "department": "materials",
+      "timestamp": "2018-09-17 18:29:00Z",
+      "slackLink": "https://pipelion.slack.com/messages/CCLEGUTJL"
+    },
+    {
+      "id": "7",
+      "artistID": "HunterTinney",
+      "assetID": "UNR6HF8BFH",
+      "contentAPI": "Cory",
+      "contentID": "content/B026.png",
+      "department": "rigging",
+      "timestamp": "2018-09-18 15:49:00Z",
+      "slackLink": "https://pipelion.slack.com/messages/CCLEGUTJL"
+    },
+    {
+      "id": "8",
+      "artistID": "BenDeMann",
+      "assetID": "QG8YUB6JO9",
+      "contentAPI": "Cory",
+      "contentID": "content/MeadhallAssets.gif",
+      "department": "modeling",
+      "timestamp": "2018-09-28 11:11:00Z",
+      "slackLink": "https://pipelion.slack.com/messages/CCLEGUTJL"
+    },
+    {
+      "id": "9",
+      "artistID": "CorySivek",
+      "assetID": "QG8YUB6JO9",
+      "contentAPI": "Cory",
+      "contentID": "content/A008.png",
+      "department": "materials",
+      "timestamp": "2018-10-02 14:41:00Z",
+      "slackLink": "https://pipelion.slack.com/messages/CCLEGUTJL"
+    },
+    {
+      "id": "10",
+      "artistID": "HunterTinney",
+      "assetID": "H3RB678fFH",
+      "contentAPI": "Cory",
+      "contentID": "content/B022.png",
+      "department": "materials",
+      "timestamp": "2018-10-06 12:01:00Z",
+      "slackLink": "https://pipelion.slack.com/messages/CCLEGUTJL"
+    },
+    {
+      "id": "11",
+      "artistID": "KendraGraham",
+      "assetID": "H3RB678fFH",
+      "contentAPI": "Cory",
+      "contentID": "content/B029.png",
+      "department": "rigging",
+      "timestamp": "2018-10-08 15:01:00Z",
+      "slackLink": "https://pipelion.slack.com/messages/CCLEGUTJL"
+    },
+    {
+      "id": "12",
+      "artistID": "CorySivek",
+      "assetID": "V97BJH34KH",
+      "contentAPI": "Cory",
+      "contentID": "content/C002.png",
+      "department": "modeling",
+      "timestamp": "2018-10-09 16:01:00Z",
+      "slackLink": "https://pipelion.slack.com/messages/CCLEGUTJL"
+    },
+    {
+      "id": "13",
+      "artistID": "HunterTinney",
+      "assetID": "H3RB678fFH",
+      "contentAPI": "Cory",
+      "contentID": "content/C018.png",
+      "department": "materials",
+      "timestamp": "2018-10-09 17:31:00Z",
+      "slackLink": "https://pipelion.slack.com/messages/CCLEGUTJL"
     }
   ],
   "userSettings": {
