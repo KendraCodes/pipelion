@@ -7,6 +7,22 @@ enum ContentAPI {
   CORY, VIMEO, SLACK, SKETCHFAB
 }
 
+ContentAPI makeContentApiFromString(String apiStr) {
+
+  switch (apiStr.toLowerCase()) {
+    case "cory":
+      return ContentAPI.CORY;
+    case "vimeo":
+      return ContentAPI.VIMEO;
+    case "slack":
+      return ContentAPI.SLACK;
+    case "sketchfab":
+      return ContentAPI.SKETCHFAB;
+    default:
+      return ContentAPI.CORY;
+  }
+}
+
 var viewModel = new ViewModel();
 
 class ViewModel { 
@@ -79,10 +95,10 @@ class PostData {
     _artistName = item["artistName"];
     _assetID = item["assetID"];
     _assetName = item["assetName"];
-    _contentAPI = item["contentAPI"];
+    _contentAPI = makeContentApiFromString(item["contentAPI"]);
     _content = item["content"];
     _department = item["department"];
-    _timestamp = item["timestamp"];
+    _timestamp = DateTime.parse(item["timestamp"]);
     _slackLink = item["slackLink"];
   }
 
