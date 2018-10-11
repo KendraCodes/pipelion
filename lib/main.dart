@@ -44,7 +44,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final items = List<NotificationData>.generate(20, (i) => NotificationData(i % 2 == 1));
+  final items = List<NotificationData>.generate(20, (i) => NotificationData(i.toString(), null, "Kaede updated Grendel in Modeling", DateTime.now(), i % 2 == 1));
   _MyHomePageState() {
     _showFilters = false;
     _currentPage = Page.posts;
