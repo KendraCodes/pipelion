@@ -94,6 +94,21 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  BoxDecoration getAppBarIconBG(Page page) {
+    if(page == _currentPage) {
+      return BoxDecoration(gradient: new RadialGradient(radius:0.6, colors: [Colors.white.withOpacity(0.4),Colors.white.withOpacity(0.0)]));
+    } else {
+      return BoxDecoration();
+    }
+  }
+
+  Color getAppBarIconColor(Page page) {
+    if(page == _currentPage) {
+      return Colors.white;
+    } else {
+      return Colors.black;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -121,17 +136,20 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Padding(
+              Container(
+                decoration: getAppBarIconBG(Page.assets),
                 padding: menuButtonsPadding,
-                child: IconButton(icon: Icon(Icons.menu), onPressed: _onAssetsMenuClicked,),
+                child: IconButton(icon: Icon(Icons.menu, color: getAppBarIconColor(Page.assets)), onPressed: _onAssetsMenuClicked,),
               ),
-              Padding(
+              Container(
+                decoration: getAppBarIconBG(Page.posts),
                 padding: menuButtonsPadding,
-                child: IconButton(icon: Icon(Icons.home), onPressed: _onHomeClicked,),
+                child: IconButton(icon: Icon(Icons.home, color: getAppBarIconColor(Page.posts)), onPressed: _onHomeClicked,),
               ),
-              Padding(
+              Container(
+                decoration: getAppBarIconBG(Page.notifications),
                 padding: menuButtonsPadding,
-                child: IconButton(icon: Icon(Icons.notifications), onPressed: _onNotificationsClicked,),
+                child: IconButton(icon: Icon(Icons.notifications, color: getAppBarIconColor(Page.notifications)), onPressed: _onNotificationsClicked,),
               )
             ],
           ),

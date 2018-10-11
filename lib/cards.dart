@@ -4,7 +4,20 @@ import 'main.dart';
 import 'dart:io';
 import 'json_loader.dart';
 import 'package:flutter/gestures.dart';
+import 'package:timeago/timeago.dart' as timeago;
+import 'package:cached_network_image/cached_network_image.dart';
 
+Map<String, Color> tagColors = {
+  "modeling": Colors.red[100],
+  "cfx": Colors.orange[100],
+  "rigging": Colors.yellow[100],
+};
+
+Map<String, Color> tagTextColors = {
+  "modeling": Colors.red[900],
+  "cfx": Colors.orange[900],
+  "rigging": Colors.yellow[900],
+};
 
 class AssetCard extends StatefulWidget {
 
@@ -26,33 +39,57 @@ class AssetCardState extends State<AssetCard> {
   AssetCardState(this.n);
   AssetData n;
 
+  CachedNetworkImage getAssetThumbnail() {
+    return CachedNetworkImage(
+      imageUrl: "http://students.cs.byu.edu/~csivek/pipelion/" + n.thumbnail,
+      placeholder: new CircularProgressIndicator(),
+      errorWidget: new Icon(Icons.error),
+      width:100.0,
+      height:100.0);
+  }
+
+  List<Widget> getDepartmentTags() {
+    List<Widget> results = [];
+    for(String department in n.departments) {
+      Container tag;
+      Color boxColor = Colors.black12;
+      Color textColor = Colors.black;
+      if (tagColors.containsKey(department) && tagTextColors.containsKey(department)) {
+        boxColor = tagColors[department];
+        textColor = tagTextColors[department];
+      }
+      tag = new Container(
+          decoration: new BoxDecoration(
+            color: boxColor,
+            borderRadius: new BorderRadius.all(Radius.circular(10.0))
+            ),
+          child: Padding(padding:EdgeInsets.all(5.0), child: Text(
+            department,
+            style: new TextStyle(color:textColor))));
+      
+     results.add(Padding(padding: EdgeInsets.all(2.0),child: tag));
+    }
+  return results;
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Card(
-      child: new Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          const ListTile(
-            leading: const Icon(Icons.album),
-            title: const Text('The Enchanted Nightingale'),
-            subtitle: const Text('Music by Julie Gable. Lyrics by Sidney Stein.'),
-          ),
-          new ButtonTheme.bar( // make buttons use the appropriate styles for cards
-            child: new ButtonBar(
-              children: <Widget>[
-                new FlatButton(
-                  child: const Text('BUY TICKETS'),
-                  onPressed: () { /* ... */ },
-                ),
-                new FlatButton(
-                  child: const Text('LISTEN'),
-                  onPressed: () { /* ... */ },
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
+        child: Padding(padding: EdgeInsets.all(8.0),
+        child: Row(
+          children: <Widget>[
+            getAssetThumbnail(),
+            Padding(padding: EdgeInsets.only(right:8.0)),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget> [
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget> [Text(n.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0)),Text("Last updated [] ago")]),
+              Padding(padding: EdgeInsets.only(bottom:15.0)),
+              Row(mainAxisAlignment:MainAxisAlignment.start, children: getDepartmentTags())
+            ]),
+          ]
+        ))
     );
   }
 }
@@ -84,14 +121,23 @@ class PostCardState extends State<PostCard> {
     return Image.asset("assets/images/slack.png", width:50.0, height:50.0);
   }
 
-  Image getUserThumbnail() {
-    return Image.network("http://students.cs.byu.edu/~csivek/pipelion/user_thumbnails/" + n.artistID + ".png", width:30.0, height: 30.0);
+  CachedNetworkImage getUserThumbnail() {
+    return CachedNetworkImage(
+      imageUrl: "http://students.cs.byu.edu/~csivek/pipelion/user_thumbnails/" + n.artistID + ".png",
+      placeholder: new CircularProgressIndicator(),
+      errorWidget: new Icon(Icons.error),
+      width:30.0,
+      height: 30.0);
   }
   
   Widget getContent() {
     switch(n.contentAPI) {
       case ContentAPI.CORY: 
-        return Image.network("http://students.cs.byu.edu/~csivek/pipelion/" + n.content, fit:BoxFit.contain);
+        return CachedNetworkImage(
+          imageUrl: "http://students.cs.byu.edu/~csivek/pipelion/" + n.content,
+          placeholder: new CircularProgressIndicator(),
+          errorWidget: new Icon(Icons.error),
+          fit:BoxFit.contain);
         break;
       case ContentAPI.SKETCHFAB: 
         break;
@@ -108,7 +154,8 @@ class PostCardState extends State<PostCard> {
 
   @override
   Widget build(BuildContext context) {
-    return new Card(
+    return new Padding(padding:EdgeInsets.symmetric(horizontal:8.0,vertical:2.0),
+    child: Card(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal:8.0, vertical:4.0),
         child: Column(
@@ -157,15 +204,26 @@ class PostCardState extends State<PostCard> {
                   )),
                 ],
               ),),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical:4.0),
+            Padding(padding: EdgeInsets.symmetric(vertical:4.0),
               child: Row(mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   Expanded(
-                    child: getContent(),
+                    child: ClipRRect(
+                      borderRadius: new BorderRadius.circular(4.0),
+                      child: getContent()
+                      ),
                 ),
               ]),
             ),
+            Padding(padding:EdgeInsets.symmetric(vertical:4.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(timeago.format(n.timestamp)),
+                  Text("👁 You watch this asset")
+                ]
+              )
+              ),
             Padding(padding:EdgeInsets.symmetric(vertical:4.0),
             child:Row(
               mainAxisSize: MainAxisSize.min,
@@ -202,10 +260,10 @@ class PostCardState extends State<PostCard> {
                 ),
               ],
             )),
-            Row(),
+            
           ],
         ),
-    ));
+    )));
   }
 }
 

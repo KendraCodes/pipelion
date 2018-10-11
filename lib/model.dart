@@ -92,6 +92,12 @@ class AssetData {
     _postIDs = postIDs;
     _departments = departments;
   }
+
+  String get id => _id;
+  String get name => _name;
+  String get thumbnail => _thumbnail;
+  List<String> get postIDs => _postIDs;
+  List<String> get departments => _departments;
   
 }
 
