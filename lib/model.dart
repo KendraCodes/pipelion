@@ -50,17 +50,22 @@ class ViewModel {
 class PostData {
   String _id;
   String _artistID;
+  String _artistName;
   String _assetID;
+  String _assetName;
   ContentAPI _contentAPI;
   String _content;
   String _department;
   DateTime _timestamp;
   String _slackLink;
 
-  PostData(String id, String artistID, String assetID, ContentAPI contentAPI, String content, String department, DateTime timestamp, String slackLink) {
+  PostData(String id, String artistID, String artistName, String assetID, String assetName,
+            ContentAPI contentAPI, String content, String department, DateTime timestamp, String slackLink) {
     _id = id;
     _artistID = artistID;
+    _artistName = artistName;
     _assetID = assetID;
+    _assetName = assetName;
     _contentAPI = contentAPI;
     _content = content;
     _department = department;
@@ -70,7 +75,9 @@ class PostData {
 
   String get id => _id;
   String get artistID => _artistID;
+  String get artistName => _artistName;
   String get assetID => _assetID;
+  String get assetName => _assetName;
   ContentAPI get contentAPI => _contentAPI;
   String get content => _content;
   String get department => _department;
