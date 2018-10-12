@@ -18,6 +18,7 @@ List<AssetData> loadAssets(List<String> filters) {
 
   List<AssetData> assets = List<AssetData>();
   rawAssetsList.forEach((item) {
+    print("$item");
     assets.add(new AssetData.fromJson(item));
   });
 
@@ -56,12 +57,12 @@ Map<String, PostData> makePostsMap() {
 
 List<NotificationData> loadNotifications(String artistID) {
   return [
-    new NotificationData("0", "0", "Kaede updated Grendel in Modeling", DateTime.now(), false),
-    new NotificationData("1", "0", "Kaede updated Grendel in Modeling", DateTime.now(), false),
-    new NotificationData("2", "0", "Kaede updated Grendel in Modeling", DateTime.now(), false),
-    new NotificationData("3", "0", "Kaede updated Grendel in Modeling", DateTime.now(), false),
-    new NotificationData("4", "0", "Kaede updated Grendel in Modeling", DateTime.now(), false),
-    new NotificationData("5", "0", "Kaede updated Grendel in Modeling", DateTime.now(), false),
-    new NotificationData("6", "0", "Kaede updated Grendel in Modeling", DateTime.now(), false),
+    new NotificationData("0", "0", "Cory S. updated Grendel in Modeling", DateTime.now(), false),
+    new NotificationData("1", "0", "Cory S. updated Grendel in Modeling", DateTime.now(), false),
+    new NotificationData("2", "0", "Cory S. updated Grendel in Modeling", DateTime.now(), false),
+    new NotificationData("3", "0", "Cory S. updated Grendel in Modeling", DateTime.now(), false),
+    new NotificationData("4", "0", "Cory S. updated Grendel in Modeling", DateTime.now(), false),
+    new NotificationData("5", "0", "Cory S. updated Grendel in Modeling", DateTime.now(), false),
+    new NotificationData("6", "0", "Cory S. updated Grendel in Modeling", DateTime.now(), false),
   ];
 }

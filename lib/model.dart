@@ -97,7 +97,7 @@ class PostData {
     _assetID = item["assetID"];
     _assetName = item["assetName"];
     _contentAPI = makeContentApiFromString(item["contentAPI"]);
-    _content = item["content"];
+    _content = item["contentID"];
     _department = item["department"];
     _timestamp = DateTime.parse(item["timestamp"]);
     _slackLink = item["slackLink"];
