@@ -39,13 +39,13 @@ class AssetCardState extends State<AssetCard> {
 
   Widget getDepartmentTags() {
     String result = "Tags: ";
-    for(int i = 0; i < n.departments.length; i++) {
+    for(int i = 0; i < n.departments.length && i < 3; i++) {
       result += n.departments[i];
-      if (i < n.departments.length - 1) {
+      if (i < 2) {
         result += ", ";
       }
     }
-    return new Text(result);
+    return new Text(result, style: TextStyle(fontSize:10.0));
   }
 
   @override
