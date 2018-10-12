@@ -110,7 +110,8 @@ List rawPostsList = [
     "contentID": "content/A004.png",
     "department": "Materials",
     "timestamp": "2018-07-09 20:19:04Z",
-    "slackLink": "https://pipelion.slack.com/messages/CCLEGUTJL"
+    "slackLink": "https://pipelion.slack.com/archives/CCLEGUTJL/p1539304004000100",
+    "slackMessage": "So yeah, I just put some extra fur on Grendel's character, does it look okay?"
   },
   {
     "id": "1",
@@ -122,7 +123,8 @@ List rawPostsList = [
     "contentID": "content/C014.png",
     "department": "CharacterFX",
     "timestamp": "2018-08-06 17:01:33Z",
-    "slackLink": "https://pipelion.slack.com/messages/CCLEGUTJL"
+    "slackLink": "https://pipelion.slack.com/archives/CCLEGUTJL/p1539304004000100",
+    "slackMessage": "So yeah, I just put some extra fur on Grendel's character, does it look okay?"
   },
   {
     "id": "2",
@@ -134,7 +136,8 @@ List rawPostsList = [
     "contentID": "content/E020.png",
     "department": "VisualFX",
     "timestamp": "2018-08-08 10:02:01Z",
-    "slackLink": "https://pipelion.slack.com/messages/CCLEGUTJL"
+    "slackLink": "https://pipelion.slack.com/archives/CCLEGUTJL/p1539304004000100",
+    "slackMessage": "So yeah, I just put some extra fur on Grendel's character, does it look okay?"
   },
   {
     "id": "3",
@@ -146,7 +149,8 @@ List rawPostsList = [
     "contentID": "content/E04.png",
     "department": "Lighting",
     "timestamp": "2018-08-08 18:23:11Z",
-    "slackLink": "https://pipelion.slack.com/messages/CCLEGUTJL"
+    "slackLink": "https://pipelion.slack.com/archives/CCLEGUTJL/p1539304004000100",
+    "slackMessage": "So yeah, I just put some extra fur on Grendel's character, does it look okay?"
   },
   {
     "id": "4",
@@ -158,7 +162,8 @@ List rawPostsList = [
     "contentID": "content/C028.png",
     "department": "Set_Dressing",
     "timestamp": "2018-08-12 01:22:00Z",
-    "slackLink": "https://pipelion.slack.com/messages/CCLEGUTJL"
+    "slackLink": "https://pipelion.slack.com/archives/CCLEGUTJL/p1539304004000100",
+    "slackMessage": "So yeah, I just put some extra fur on Grendel's character, does it look okay?"
   },
   {
     "id": "5",
@@ -170,7 +175,8 @@ List rawPostsList = [
     "contentID": "content/H011.png",
     "department": "CharacterFX",
     "timestamp": "2018-09-15 14:09:00Z",
-    "slackLink": "https://pipelion.slack.com/messages/CCLEGUTJL"
+    "slackLink": "https://pipelion.slack.com/archives/CCLEGUTJL/p1539304004000100",
+    "slackMessage": "So yeah, I just put some extra fur on Grendel's character, does it look okay?"
   },
   {
     "id": "6",
@@ -182,7 +188,8 @@ List rawPostsList = [
     "contentID": "content/cloth02.jpg",
     "department": "Materials",
     "timestamp": "2018-09-17 18:29:00Z",
-    "slackLink": "https://pipelion.slack.com/messages/CCLEGUTJL"
+    "slackLink": "https://pipelion.slack.com/archives/CCLEGUTJL/p1539304004000100",
+    "slackMessage": "So yeah, I just put some extra fur on Grendel's character, does it look okay?"
   },
   {
     "id": "7",
@@ -194,7 +201,8 @@ List rawPostsList = [
     "contentID": "content/B026.png",
     "department": "Rigging",
     "timestamp": "2018-09-18 15:49:00Z",
-    "slackLink": "https://pipelion.slack.com/messages/CCLEGUTJL"
+    "slackLink": "https://pipelion.slack.com/archives/CCLEGUTJL/p1539304004000100",
+    "slackMessage": "So yeah, I just put some extra fur on Grendel's character, does it look okay?"
   },
   {
     "id": "8",
@@ -206,7 +214,8 @@ List rawPostsList = [
     "contentID": "content/MeadhallAssets.gif",
     "department": "Modeling",
     "timestamp": "2018-09-28 11:11:00Z",
-    "slackLink": "https://pipelion.slack.com/messages/CCLEGUTJL"
+    "slackLink": "https://pipelion.slack.com/archives/CCLEGUTJL/p1539304004000100",
+    "slackMessage": "So yeah, I just put some extra fur on Grendel's character, does it look okay?"
   },
   {
     "id": "9",
@@ -218,7 +227,8 @@ List rawPostsList = [
     "contentID": "content/A008.png",
     "department": "Materials",
     "timestamp": "2018-10-02 14:41:00Z",
-    "slackLink": "https://pipelion.slack.com/messages/CCLEGUTJL"
+    "slackLink": "https://pipelion.slack.com/archives/CCLEGUTJL/p1539304004000100",
+    "slackMessage": "So yeah, I just put some extra fur on Grendel's character, does it look okay?"
   },
   {
     "id": "10",
@@ -230,7 +240,8 @@ List rawPostsList = [
     "contentID": "content/B022.png",
     "department": "Materials",
     "timestamp": "2018-10-06 12:01:00Z",
-    "slackLink": "https://pipelion.slack.com/messages/CCLEGUTJL"
+    "slackLink": "https://pipelion.slack.com/archives/CCLEGUTJL/p1539304004000100",
+    "slackMessage": "So yeah, I just put some extra fur on Grendel's character, does it look okay?"
   },
   {
     "id": "11",
@@ -242,7 +253,8 @@ List rawPostsList = [
     "contentID": "content/B029.png",
     "department": "Rigging",
     "timestamp": "2018-10-08 15:01:00Z",
-    "slackLink": "https://pipelion.slack.com/messages/CCLEGUTJL"
+    "slackLink": "https://pipelion.slack.com/archives/CCLEGUTJL/p1539304004000100",
+    "slackMessage": "So yeah, I just put some extra fur on Grendel's character, does it look okay?"
   },
   {
     "id": "12",
@@ -254,7 +266,8 @@ List rawPostsList = [
     "contentID": "content/C002.png",
     "department": "Modeling",
     "timestamp": "2018-10-09 16:01:00Z",
-    "slackLink": "https://pipelion.slack.com/messages/CCLEGUTJL"
+    "slackLink": "https://pipelion.slack.com/archives/CCLEGUTJL/p1539304004000100",
+    "slackMessage": "So yeah, I just put some extra fur on Grendel's character, does it look okay?"
   },
   {
     "id": "13",
@@ -266,7 +279,8 @@ List rawPostsList = [
     "contentID": "content/C018.png",
     "department": "Materials",
     "timestamp": "2018-10-09 17:31:00Z",
-    "slackLink": "https://pipelion.slack.com/messages/CCLEGUTJL"
+    "slackLink": "https://pipelion.slack.com/archives/CCLEGUTJL/p1539304004000100",
+    "slackMessage": "So yeah, I just put some extra fur on Grendel's character, does it look okay?"
   }
 ];
 Map rawUserSettingsMap = {
