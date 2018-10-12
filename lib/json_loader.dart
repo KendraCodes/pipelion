@@ -1,3 +1,5 @@
+import 'package:pipelion/mockData.dart';
+
 import 'model.dart';
 
 AssetData loadAsset(String assetID) {
@@ -13,28 +15,44 @@ NotificationData loadNotification(String notificationID) {
 }
 
 List<AssetData> loadAssets(List<String> filters) {
-  return [
-    new AssetData("0", "Grendel", "thumbnails/Grendel.png", ["0","1","3"], ["modeling","cfx","rigging"] ),
-    new AssetData("1", "Grendel", "thumbnails/Grendel.png", ["0","1","3"], ["modeling","cfx","rigging"] ),
-    new AssetData("2", "Grendel", "thumbnails/Grendel.png", ["0","1","3"], ["modeling","cfx","rigging"] ),
-    new AssetData("3", "Grendel", "thumbnails/Grendel.png", ["0","1","3"], ["modeling","cfx","rigging"] ),
-    new AssetData("4", "Grendel", "thumbnails/Grendel.png", ["0","1","3"], ["modeling","cfx","rigging"] ),
-    new AssetData("5", "Grendel", "thumbnails/Grendel.png", ["0","1","3"], ["modeling","cfx","rigging"] ),
-    new AssetData("6", "Grendel", "thumbnails/Grendel.png", ["0","1","3"], ["modeling","cfx","rigging"] ),
-    new AssetData("7", "Grendel", "thumbnails/Grendel.png", ["0","1","3"], ["modeling","cfx","rigging"] ),
-    new AssetData("8", "Grendel", "thumbnails/Grendel.png", ["0","1","3"], ["modeling","cfx","rigging"] )
-  ];
+
+  List<AssetData> assets = List<AssetData>();
+  rawAssetsList.forEach((item) {
+    assets.add(new AssetData.fromJson(item));
+  });
+
+  return assets;
+}
+
+Map<String, AssetData> makeAssetsMap() {
+  Map<String, AssetData> assetsMap = Map();
+  rawAssetsList.forEach((item) {
+    AssetData asset = AssetData.fromJson(item);
+    assetsMap.putIfAbsent(asset.id, () => asset);;
+  });
 }
 
 List<PostData> loadPosts(List<String> filters) {
-  return [
-    new PostData("0","HunterTinney","Hunter T.","3","A004",ContentAPI.CORY,"content/A004.png","modeling", DateTime.now(),"https://pipelion.slack.com/messages/CCLEGUTJL"),
-    new PostData("1","CorySivek","Cory S.","3","B026",ContentAPI.CORY,"content/B026.png","modeling", DateTime.parse("2018-10-10 13:11:00Z"),"https://pipelion.slack.com/messages/CCLEGUTJL"),
-    new PostData("2","HunterTinney","Hunter T.","3","A004",ContentAPI.CORY,"content/A004.png","modeling", DateTime.now(),"https://pipelion.slack.com/messages/CCLEGUTJL"),
-    new PostData("3","HunterTinney","Hunter T.","3","A004",ContentAPI.CORY,"content/A004.png","modeling", DateTime.now(),"https://pipelion.slack.com/messages/CCLEGUTJL"),
-    new PostData("4","HunterTinney","Hunter T.","3","A004",ContentAPI.CORY,"content/A004.png","modeling", DateTime.now(),"https://pipelion.slack.com/messages/CCLEGUTJL")
-  ];
+
+  List<PostData> posts = List<PostData>();
+  rawPostsList.forEach((item) {
+    posts.add(new PostData.fromJson(item));
+  });
+
+  return posts;
 }
+
+Map<String, PostData> makePostsMap() {
+  Map<String, PostData> postsMap = Map();
+  rawPostsList.forEach((item) {
+    PostData post = PostData.fromJson(item);
+    postsMap.putIfAbsent(post.id, () => post);
+  });
+
+  return postsMap;
+}
+
+
 
 List<NotificationData> loadNotifications(String artistID) {
   return [
