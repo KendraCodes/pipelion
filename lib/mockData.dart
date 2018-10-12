@@ -306,6 +306,7 @@ List<String> departments = [
 List rawNotificationsList = [
   {
     "id": "0",
+    "artistID":"KendraGraham",
     "postID": "0",
     "message": "Kendra G. updated Grendel in Materials",
     "timestamp": "2018-07-09T20:19:04.000Z",
@@ -313,6 +314,7 @@ List rawNotificationsList = [
   },
   {
     "id": "1",
+    "artistID":"BenDeMann",
     "postID": "1",
     "message": "Ben D. updated Grendel in CharacterFX",
     "timestamp": "2018-08-06T17:01:33.000Z",
@@ -320,6 +322,7 @@ List rawNotificationsList = [
   },
   {
     "id": "2",
+    "artistID":"CorySivek",
     "postID": "2",
     "message": "Cory S. updated Shot_E004 in VisualFX",
     "timestamp": "2018-08-08T10:02:01.000Z",
@@ -327,6 +330,7 @@ List rawNotificationsList = [
   },
   {
     "id": "3",
+    "artistID":"CorySivek",
     "postID": "3",
     "message": "Cory S. updated Shot_E004 in Lighting",
     "timestamp": "2018-08-08T18:23:11.000Z",
@@ -334,6 +338,7 @@ List rawNotificationsList = [
   },
   {
     "id": "4",
+    "artistID":"HunterTinney",
     "postID": "4",
     "message": "Hunter T. updated Shot_C009 in Set_Dressing",
     "timestamp": "2018-08-12T01:22:00.000Z",
@@ -341,20 +346,23 @@ List rawNotificationsList = [
   },
   {
     "id": "5",
+    "artistID":"HunterTinney",
     "postID": "5",
     "message": "Hunter T. updated Cookie_Viking in CharacterFX",
     "timestamp": "2018-09-15T14:09:00.000Z",
-    "isSeen": false
+    "isSeen": true
   },
   {
     "id": "6",
+    "artistID":"KendraGraham",
     "postID": "6",
     "message": "Kendra G. updated Couch_Blanket in Materials",
     "timestamp": "2018-09-17T18:29:00.000Z",
-    "isSeen": false
+    "isSeen": true
   },
   {
     "id": "7",
+    "artistID":"HunterTinney",
     "postID": "7",
     "message": "Hunter T. updated Cookie_Viking in Rigging",
     "timestamp": "2018-09-18T15:49:00.000Z",
@@ -362,6 +370,7 @@ List rawNotificationsList = [
   },
   {
     "id": "8",
+    "artistID":"BenDeMann",
     "postID": "8",
     "message": "Ben D. updated Meadhall in Modeling",
     "timestamp": "2018-09-28T11:11:00.000Z",
@@ -369,13 +378,15 @@ List rawNotificationsList = [
   },
   {
     "id": "9",
+    "artistID":"CorySivek",
     "postID": "9",
     "message": "Cory S. updated Meadhall in Materials",
     "timestamp": "2018-10-02T14:41:00.000Z",
-    "isSeen": false
+    "isSeen": true
   },
   {
     "id": "10",
+    "artistID":"HunterTinney",
     "postID": "10",
     "message": "Hunter T. updated Grendel in Materials",
     "timestamp": "2018-10-06T12:01:00.000Z",
@@ -383,23 +394,26 @@ List rawNotificationsList = [
   },
   {
     "id": "11",
+    "artistID":"KendraGraham",
     "postID": "11",
     "message": "Kendra G. updated Grendel in Rigging",
     "timestamp": "2018-10-08T15:01:00.000Z",
-    "isSeen": false
+    "isSeen": true
   },
   {
     "id": "12",
+    "artistID":"CorySivek",
     "postID": "12",
     "message": "Cory S. updated Grendel_Bed in Modeling",
     "timestamp": "2018-10-09T16:01:00.000Z",
-    "isSeen": false
+    "isSeen": true
   },
   {
     "id": "13",
+    "artistID":"HunterTinney",
     "postID": "13",
     "message": "Hunter T. updated Grendel in Materials",
     "timestamp": "2018-10-09T17:31:00.000Z",
-    "isSeen": false
+    "isSeen": true
   }
 ];

@@ -150,13 +150,15 @@ class AssetData {
 
 class NotificationData {
   String _id;
+  String _artistID;
   String _postID;
   String _message;
   DateTime _timestamp;
   bool _isSeen;
 
-  NotificationData(String id, String postID, String message, DateTime timestamp, bool isSeen) {
+  NotificationData(String id, String artistID, String postID, String message, DateTime timestamp, bool isSeen) {
     _id = id;
+    _artistID = artistID;
     _postID = postID;
     _message = message;
     _timestamp = timestamp;
@@ -165,6 +167,7 @@ class NotificationData {
 
   NotificationData.fromJson(Map item) {
     _id = item["id"];
+    _artistID = item["artistID"];
     _postID = item["postID"];
     _message = item["message"];
     _timestamp = DateTime.parse(item["timestamp"]);
@@ -177,6 +180,8 @@ class NotificationData {
 
 
   String get id => _id;
+
+  String get artistID => _artistID;
 
   bool get isSeen => _isSeen;
 

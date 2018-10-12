@@ -4,8 +4,7 @@ import 'model.dart';
 import 'cards.dart';
 
 class MainListView extends StatefulWidget {
-  MainListView(List<NotificationData> list) {
-    mainList = list;
+  MainListView() {
   }
 
   List<NotificationData> mainList;
@@ -22,14 +21,14 @@ class MainListView extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    myState = new _MainListViewState(mainList);
+    myState = new _MainListViewState();
     return myState;
   }
 }
 
 class _MainListViewState extends State<MainListView> {
 
-  _MainListViewState(List<NotificationData> list) {
+  _MainListViewState() {
     currentPage = Page.posts;
   }
 

@@ -280,7 +280,7 @@ class NotificationCardState extends State<NotificationCard> {
 
   CachedNetworkImage getUserThumbnail() {
     return CachedNetworkImage(
-      imageUrl: "http://students.cs.byu.edu/~csivek/pipelion/user_thumbnails/" + "CorySivek" + ".png",
+      imageUrl: "http://students.cs.byu.edu/~csivek/pipelion/user_thumbnails/" + n.artistID + ".png",
       placeholder: new CircularProgressIndicator(),
       errorWidget: new Icon(Icons.error),
       width:50.0,
