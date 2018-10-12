@@ -299,7 +299,7 @@ class NotificationCardState extends State<NotificationCard> {
 
   @override
   Widget build(BuildContext context) {
-    Color myColor = n.clicked ? Colors.white : Colors.green[100];
+    Color myColor = n.isSeen ? Colors.white : Colors.green[100];
     return Container(
 //        margin: const EdgeInsets.all(15.0),
 //        padding: const EdgeInsets.all(3.0),

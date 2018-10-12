@@ -164,6 +164,14 @@ class NotificationData {
     return _message;
   }
 
-  bool get clicked => _isSeen;
+
+  String get id => _id;
+
+  bool get isSeen => _isSeen;
+
   DateTime get timestamp => _timestamp;
+
+  String get postID => _postID;
+
+  String get message => _message;
 }
