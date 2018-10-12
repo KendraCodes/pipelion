@@ -29,7 +29,7 @@ Map<String, AssetData> makeAssetsMap() {
   Map<String, AssetData> assetsMap = Map();
   rawAssetsList.forEach((item) {
     AssetData asset = AssetData.fromJson(item);
-    assetsMap.putIfAbsent(asset.id, () => asset);;
+    assetsMap.putIfAbsent(asset.id, () => asset);
   });
 }
 
@@ -53,16 +53,11 @@ Map<String, PostData> makePostsMap() {
   return postsMap;
 }
 
-
-
 List<NotificationData> loadNotifications(String artistID) {
-  return [
-    new NotificationData("0", "0", "Cory S. updated Grendel in Modeling", DateTime.now(), false),
-    new NotificationData("1", "0", "Cory S. updated Grendel in Modeling", DateTime.now(), false),
-    new NotificationData("2", "0", "Cory S. updated Grendel in Modeling", DateTime.now(), false),
-    new NotificationData("3", "0", "Cory S. updated Grendel in Modeling", DateTime.now(), false),
-    new NotificationData("4", "0", "Cory S. updated Grendel in Modeling", DateTime.now(), false),
-    new NotificationData("5", "0", "Cory S. updated Grendel in Modeling", DateTime.now(), false),
-    new NotificationData("6", "0", "Cory S. updated Grendel in Modeling", DateTime.now(), false),
-  ];
+
+  List<NotificationData> notifications = List<NotificationData>();
+  rawNotificationsList.forEach((item) {
+    notifications.add(NotificationData.fromJson(item));
+  });
+  return notifications;
 }
