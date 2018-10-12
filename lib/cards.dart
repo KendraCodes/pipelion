@@ -135,11 +135,10 @@ class PostCardState extends State<PostCard> {
   }
 
   _launchURL() async {
-    const url = "https://pipelion.slack.com/archives/CCLEGUTJL/p1536189649000100?thread_ts=1536189649.000100&cid=CCLEGUTJL";
-    if (await canLaunch(url)) {
-      await launch(url);
+    if (await canLaunch(n.slackLink)) {
+      await launch(n.slackLink);
     } else {
-      throw "Could not launch $url";
+      throw "Could not launch";
     }
   }
 
@@ -224,7 +223,7 @@ class PostCardState extends State<PostCard> {
                 child:Container(
                     padding:EdgeInsets.all(14.0),
                     child:Text(
-                      "Here's a slack message with an update about how the asset is doing. Isn't that great? Here's a slack message with an update about how the asset is doing. Isn't that great? Here's a slack message with an update about how the asset is doing. Isn't that great?Here's a slack message with an update about how the asset is doing. Isn't that great? Here's a slack message with an update about how the asset is doing. Isn't that great?",
+                      n.slackMessage,
                       style: TextStyle(color: Colors.black, fontSize: 15.0),
                       overflow: TextOverflow.ellipsis,
                       maxLines: 3,
