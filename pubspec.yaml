@@ -13,6 +13,7 @@ environment:
   sdk: ">=2.0.0-dev.68.0 <3.0.0"
 
 dependencies:
+  url_launcher: ^4.0.1
   cached_network_image: "^0.4.1"
   timeago: ^2.0.8
   flutter:
