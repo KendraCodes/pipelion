@@ -160,6 +160,14 @@ class NotificationData {
     _isSeen = isSeen;
   }
 
+  NotificationData.fromJson(Map item) {
+    _id = item["id"];
+    _postID = item["postID"];
+    _message = item["message"];
+    _timestamp = DateTime.parse(item["timestamp"]);
+    _isSeen = item["isSeen"];
+  }
+
   String toString() {
     return _message;
   }
