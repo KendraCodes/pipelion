@@ -6,18 +6,7 @@ import 'json_loader.dart';
 import 'package:flutter/gestures.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:cached_network_image/cached_network_image.dart';
-
-Map<String, Color> tagColors = {
-  "modeling": Colors.red[100],
-  "cfx": Colors.orange[100],
-  "rigging": Colors.yellow[100],
-};
-
-Map<String, Color> tagTextColors = {
-  "modeling": Colors.red[900],
-  "cfx": Colors.orange[900],
-  "rigging": Colors.yellow[900],
-};
+import 'package:url_launcher/url_launcher.dart';
 
 class AssetCard extends StatefulWidget {
 
@@ -48,48 +37,41 @@ class AssetCardState extends State<AssetCard> {
       height:100.0);
   }
 
-  List<Widget> getDepartmentTags() {
-    List<Widget> results = [];
-    for(String department in n.departments) {
-      Container tag;
-      Color boxColor = Colors.black12;
-      Color textColor = Colors.black;
-      if (tagColors.containsKey(department) && tagTextColors.containsKey(department)) {
-        boxColor = tagColors[department];
-        textColor = tagTextColors[department];
+  Widget getDepartmentTags() {
+    String result = "Tags: ";
+    for(int i = 0; i < n.departments.length; i++) {
+      result += n.departments[i];
+      if (i < n.departments.length - 1) {
+        result += ", ";
       }
-      tag = new Container(
-          decoration: new BoxDecoration(
-            color: boxColor,
-            borderRadius: new BorderRadius.all(Radius.circular(10.0))
-            ),
-          child: Padding(padding:EdgeInsets.all(5.0), child: Text(
-            department,
-            style: new TextStyle(color:textColor))));
-      
-     results.add(Padding(padding: EdgeInsets.all(2.0),child: tag));
     }
-  return results;
+    return new Text(result);
   }
 
   @override
   Widget build(BuildContext context) {
     return new Card(
+        child: InkWell(
+          onTap: () {
+          },
         child: Padding(padding: EdgeInsets.all(8.0),
         child: Row(
           children: <Widget>[
             getAssetThumbnail(),
             Padding(padding: EdgeInsets.only(right:8.0)),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget> [
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget> [Text(n.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0)),Text("Last updated [] ago")]),
-              Padding(padding: EdgeInsets.only(bottom:15.0)),
-              Row(mainAxisAlignment:MainAxisAlignment.start, children: getDepartmentTags())
-            ]),
+            Container(
+              height:100.0,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget> [
+                  Column(crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget> [Text(n.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24.0)),
+                Text("Last updated [] ago")]),
+                Row(mainAxisAlignment:MainAxisAlignment.start, children: <Widget>[getDepartmentTags()])
+              ])),
           ]
-        ))
+        )))
     );
   }
 }
@@ -152,6 +134,15 @@ class PostCardState extends State<PostCard> {
     return "Grendel";
   }
 
+  _launchURL() async {
+    const url = "https://pipelion.slack.com/archives/CCLEGUTJL/p1536189649000100?thread_ts=1536189649.000100&cid=CCLEGUTJL";
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw "Could not launch $url";
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Padding(padding:EdgeInsets.symmetric(horizontal:8.0,vertical:2.0),
@@ -170,7 +161,7 @@ class PostCardState extends State<PostCard> {
                 child: Row(
                     children: [
                       Text(
-                        n.artistID,
+                        n.artistName,
                         textAlign: TextAlign.left,
                         style: TextStyle(color: Colors.black, fontSize: 13.0, fontWeight: FontWeight.bold),
                         ),
@@ -182,7 +173,7 @@ class PostCardState extends State<PostCard> {
                       Flexible(
                         child: Container(
                           child: Text(
-                            " " + getAssetName(n.assetID),
+                            " " + n.assetName,
                             softWrap: false,
                             textAlign: TextAlign.left,
                             overflow: TextOverflow.fade,
@@ -251,9 +242,9 @@ class PostCardState extends State<PostCard> {
                   height: 75.0,
                   padding:EdgeInsets.all(0.0),
                   child: RaisedButton(
+                    onPressed:_launchURL,
                     color:Colors.white,
                     elevation: 5.0,
-                    onPressed: () {},
                     child: Column(children: <Widget>[ getSlackImage(), Text("Go to Slack")]),
                     shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(10.0))
                   ),

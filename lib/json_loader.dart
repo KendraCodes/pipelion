@@ -18,6 +18,7 @@ List<AssetData> loadAssets(List<String> filters) {
 
   List<AssetData> assets = List<AssetData>();
   rawAssetsList.forEach((item) {
+    print("$item");
     assets.add(new AssetData.fromJson(item));
   });
 

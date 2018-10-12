@@ -74,9 +74,10 @@ class PostData {
   String _department;
   DateTime _timestamp;
   String _slackLink;
+  String _slackMessage;
 
-  PostData(String id, String artistID, String artistName, String assetID, String assetName,
-            ContentAPI contentAPI, String content, String department, DateTime timestamp, String slackLink) {
+  PostData(String id, String artistID, String artistName, String assetID, String assetName, ContentAPI contentAPI, 
+        String content, String department, DateTime timestamp, String slackLink, String slackMessage) {
     _id = id;
     _artistID = artistID;
     _artistName = artistName;
@@ -96,10 +97,11 @@ class PostData {
     _assetID = item["assetID"];
     _assetName = item["assetName"];
     _contentAPI = makeContentApiFromString(item["contentAPI"]);
-    _content = item["content"];
+    _content = item["contentID"];
     _department = item["department"];
     _timestamp = DateTime.parse(item["timestamp"]);
     _slackLink = item["slackLink"];
+    _slackMessage = item["slackMessage"];
   }
 
   String get id => _id;
@@ -112,6 +114,7 @@ class PostData {
   String get department => _department;
   DateTime get timestamp => _timestamp;
   String get slackLink => _slackLink;
+  String get slackMessage => _slackMessage;
 }
 
 class AssetData {
