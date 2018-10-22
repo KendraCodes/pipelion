@@ -4,7 +4,7 @@ import 'json_loader.dart';
 import 'main.dart';
 
 enum ContentAPI {
-  CORY, VIMEO, SLACK, SKETCHFAB
+  CORY, CORY_VIDEO, VIMEO, SLACK, SKETCHFAB
 }
 
 ContentAPI makeContentApiFromString(String apiStr) {
@@ -12,6 +12,8 @@ ContentAPI makeContentApiFromString(String apiStr) {
   switch (apiStr.toLowerCase()) {
     case "cory":
       return ContentAPI.CORY;
+    case "cory_video":
+      return ContentAPI.CORY_VIDEO;
     case "vimeo":
       return ContentAPI.VIMEO;
     case "slack":

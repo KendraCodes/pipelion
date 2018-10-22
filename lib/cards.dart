@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 import 'model.dart';
 import 'main.dart';
 import 'dart:io';
+import 'dart:convert';
 import 'json_loader.dart';
+import 'dart:async';
 import 'package:flutter/gestures.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+import 'package:http/http.dart' as http;
 
 class AssetCard extends StatefulWidget {
 
@@ -77,6 +81,8 @@ class AssetCardState extends State<AssetCard> {
 }
 
 
+
+
 class PostCard extends StatefulWidget {
 
   PostCard(PostData n) {
@@ -98,9 +104,44 @@ class PostCardState extends State<PostCard> {
     this.n = n;
   }
   PostData n;
+  FlutterWebviewPlugin webView;
 
   Image getSlackImage() {
     return Image.asset("assets/images/slack.png", width:50.0, height:50.0);
+  }
+
+  Widget getSketchFabThumbnail(String uid) {
+    return FutureBuilder<http.Response>(
+      future: http.get('https://api.sketchfab.com/v3/models/' + uid),
+      builder: (context, response) {
+        if (response.hasData) {
+          String result = "";
+          if (response.data.statusCode == 200) {
+            Map<String, dynamic> data = json.decode(response.data.body);
+            if(data.keys.contains("thumbnails")) {
+              Map<String, dynamic> thumbnails = data["thumbnails"];
+              if(thumbnails.keys.contains("images")) {
+                var imagesFromJSON = thumbnails["images"] as List;
+                var images = imagesFromJSON.map((i) => i).toList();
+                print(images.runtimeType);
+                if (images.length > 0 && images[0].keys.contains("url")) {
+                    result = images[0]["url"];
+                    return CachedNetworkImage(
+                      imageUrl: result,
+                      placeholder: new CircularProgressIndicator(),
+                      errorWidget: new Icon(Icons.error),
+                      fit:BoxFit.contain);
+                }
+              }
+          }
+          
+        }
+        } else if (response.hasError) {
+          return new Icon(Icons.error);
+        }   // By default, show a loading spinner
+        return CircularProgressIndicator();
+      }
+    );
   }
 
   CachedNetworkImage getUserThumbnail() {
@@ -110,6 +151,39 @@ class PostCardState extends State<PostCard> {
       errorWidget: new Icon(Icons.error),
       width:30.0,
       height: 30.0);
+  }
+
+  void DrawWebView(Rect rect, double width, double height) {
+    if (webView != null) {
+      webView.dispose();
+      webView = null;
+    }
+    webView = new FlutterWebviewPlugin();
+    webView.launch(
+      "",
+      rect: rect
+    );
+    
+    webView.evalJavascript('''
+    document.write(`
+    <div class="sketchfab-embed-wrapper">
+    <iframe width="''' + width.toString() + '''" height="''' + height.toString() + '''"
+    src="
+    '''
+    + "https://sketchfab.com/models/" + n.content + "/embed?autospin=0.2&amp;autostart=1&amp;camera=0" +
+    '''
+    frameborder="0" allow="autoplay; fullscreen; vr" mozallowfullscreen="true" webkitallowfullscreen="true">
+    </iframe>
+    </div>
+    `);
+    ''');
+  }
+
+  void DismissWebView() {
+    if (webView != null) {
+      webView.dispose();
+      webView = null;
+    }
   }
   
   Widget getContent() {
@@ -121,7 +195,14 @@ class PostCardState extends State<PostCard> {
           errorWidget: new Icon(Icons.error),
           fit:BoxFit.contain);
         break;
-      case ContentAPI.SKETCHFAB: 
+      case ContentAPI.CORY_VIDEO:
+
+        break;
+      case ContentAPI.SKETCHFAB:
+      
+        DrawWebView(new Rect.fromLTWH(0.0,0.0,MediaQuery.of(context).size.width, 300.0), MediaQuery.of(context).size.width, 300.0);
+        return getSketchFabThumbnail(n.content);
+
         break;
       case ContentAPI.SLACK: 
         break;
