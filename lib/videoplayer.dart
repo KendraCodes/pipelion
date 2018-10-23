@@ -73,13 +73,13 @@ class _VideoPlayPauseState extends State<VideoPlayPause> {
           }
         },
       ),
-      //Align(
-      //  alignment: Alignment.bottomCenter,
-      //  child: VideoProgressIndicator(
-      //    controller,
-      //    allowScrubbing: true,
-      //  ),
-      //),
+      Align(
+        alignment: Alignment.bottomCenter,
+        child: VideoProgressIndicator(
+          controller,
+          allowScrubbing: true,
+        ),
+      ),
       Center(child: imageFadeAnim),
       Center(
           child: controller.value.isBuffering

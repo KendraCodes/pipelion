@@ -13,6 +13,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:http/http.dart' as http;
+import 'videoplayer.dart';
 
 class AssetCard extends StatefulWidget {
 
@@ -111,11 +112,16 @@ class PostCardState extends State<PostCard> {
 
   void initState() {
     super.initState();
+    //initializeController();
+  }
+
+  initializeController() async {
+    _controller.dispose();
     _controller = VideoPlayerController.network(
       'http://students.cs.byu.edu/~csivek/pipelion/' + n.content,
-    )
-    ..initialize().then((_) {
-      setState(() {});
+    );
+    await _controller.initialize().then((_) {
+      setState((){});
     });
   }
 
@@ -209,15 +215,12 @@ class PostCardState extends State<PostCard> {
           fit:BoxFit.contain);
         break;
       case ContentAPI.CORY_VIDEO:
-        if (_controller.value.initialized){
-          return Chewie(_controller, 
-          aspectRatio: _controller.value.aspectRatio, 
-          autoPlay: true, 
-          looping: true,
-          autoInitialize: true,);
-        } else {
-          return Container();
-        }
+       return new NetworkPlayerLifeCycle(
+                    "http://students.cs.byu.edu/~csivek/pipelion/" + n.content,
+                    (BuildContext context, VideoPlayerController controller) =>
+                    //AspectRatioVideo(controller)
+                  Chewie(controller, autoPlay: true, looping: true),
+        );
         break;
       case ContentAPI.SKETCHFAB:
       
