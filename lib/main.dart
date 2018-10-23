@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'top_bar.dart';
+import 'appbarsearch.dart';
+import 'filterdrawer.dart';
 import 'cards.dart';
 import 'model.dart';
 import 'main_list_view.dart';
@@ -10,6 +11,20 @@ enum Page {
   assets,
   posts,
   notifications
+}
+
+enum SearchState {
+  idle,
+  searching
+}
+
+class Filter {
+  Filter(String name, bool filtered) {
+    this.name = name;
+    this.filtered = filtered;
+  }
+  String name;
+  bool filtered;
 }
 
 final Map pageSearchTerms = {
@@ -52,15 +67,20 @@ class _MyHomePageState extends State<MyHomePage> {
     _showFilters = false;
     _currentPage = Page.posts;
     _searchText = "default search text";
-    _topBar = new TopBar(_updateSearch);
+    _searchState = SearchState.idle;
+    _appBarSearch = new AppBarSearch(_updateSearch, _onSearchPressed);
+    _filterDrawer = new FilterDrawer(_updateFilters, _getFilters);
     _mainListView = new MainListView();
   }
 
   bool _showFilters;
   Page _currentPage;
   String _searchText;
+  SearchState _searchState;
+  List<Filter> _filters = [new Filter("Watched", true), new Filter("Materials", false)];
 
-  TopBar _topBar;
+  AppBarSearch _appBarSearch;
+  FilterDrawer _filterDrawer;
   MainListView _mainListView;
 
   void _updateSearch(String searchText) {
@@ -69,10 +89,32 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _updateFilters(List<Filter> filters) {
+    
+    _filterDrawer.myState.setState((){
+      _filters = filters;
+    });
+  }
+
+  List<Filter> _getFilters() {
+    return _filters;
+  }
+
+  void _onSearchPressed() {
+    setState(() {
+      if (_searchState == SearchState.idle) {
+        _searchState = SearchState.searching;
+      } else {
+        _searchState = SearchState.idle;
+      }
+      _appBarSearch.setSearchState(_searchState);
+    });
+  }
+
   void _onHomeClicked() {
     setState(() {
       _currentPage = Page.posts;
-      _topBar.setCurrentPage(_currentPage);
+      _appBarSearch.setCurrentPage(_currentPage);
       _mainListView.setCurrentPage(_currentPage);
     });
   }
@@ -80,7 +122,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void _onNotificationsClicked() {
     setState(() {
       _currentPage = Page.notifications;
-      _topBar.setCurrentPage(_currentPage);
+      _appBarSearch.setCurrentPage(_currentPage);
       _mainListView.setCurrentPage(_currentPage);
     });
   }
@@ -88,47 +130,14 @@ class _MyHomePageState extends State<MyHomePage> {
   void _onAssetsMenuClicked() {
     setState(() {
       _currentPage = Page.assets;
-      _topBar.setCurrentPage(_currentPage);
+      _appBarSearch.setCurrentPage(_currentPage);
       _mainListView.setCurrentPage(_currentPage);
     });
   }
 
-  BoxDecoration getAppBarIconBG(Page page) {
-    if(page == _currentPage) {
-      return BoxDecoration(gradient: new RadialGradient(radius:0.6, colors: [Colors.white.withOpacity(0.4),Colors.white.withOpacity(0.0)]));
-    } else {
-      return BoxDecoration();
-    }
-  }
-
-  Color getAppBarIconColor(Page page) {
-    if(page == _currentPage) {
-      return Colors.white;
-    } else {
-      return Colors.black;
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  BottomAppBar getBottomAppBar() {
     EdgeInsets menuButtonsPadding = new EdgeInsets.fromLTRB(30.0, 0.0, 30.0, 0.0);
-
-    return new Scaffold(
-      body: SafeArea(
-        child: Container(
-          color: Theme.of(context).backgroundColor,
-          child: new Center(
-            child: new Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                _topBar,
-                _mainListView,
-              ],
-            ),
-          ),
-        ),
-      ),
-      bottomNavigationBar: BottomAppBar(
+      return BottomAppBar(
         child: Container(
           color: Theme.of(context).bottomAppBarColor,
           child: new Row(
@@ -153,8 +162,87 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
         ),
-      ),
+      );
+  }
 
-    );
+  BoxDecoration getAppBarIconBG(Page page) {
+    if(page == _currentPage) {
+      return BoxDecoration(gradient: new RadialGradient(radius:0.6, colors: [Colors.white.withOpacity(0.4),Colors.white.withOpacity(0.0)]));
+    } else {
+      return BoxDecoration();
+    }
+  }
+
+  Color getAppBarIconColor(Page page) {
+    if(page == _currentPage) {
+      return Colors.white;
+    } else {
+      return Colors.black;
+    }
+  }
+
+  IconButton _getActionButton() {
+    switch(_searchState) {
+      case SearchState.idle:
+      return IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () {
+                print("touched in idle state");
+                _onSearchPressed();
+              },
+            );
+      break;
+      case SearchState.searching:
+      return IconButton(
+              icon: Icon(Icons.close),
+              onPressed: () {
+                print("touched in searching state");
+                _onSearchPressed();
+              },
+            );
+      break;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (_currentPage == Page.notifications) {
+      return new Scaffold(
+        body: SafeArea(
+          child: Container(
+            color: Theme.of(context).backgroundColor,
+            child: new Center(
+              child: new Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  _mainListView,
+                ],
+              ),
+            ),
+          ),
+        ),
+        appBar: AppBar(title:_appBarSearch),
+        bottomNavigationBar: getBottomAppBar(),
+      );
+  } else {
+    return new Scaffold(
+        body: SafeArea(
+          child: Container(
+            color: Theme.of(context).backgroundColor,
+            child: new Center(
+              child: new Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  _mainListView,
+                ],
+              ),
+            ),
+          ),
+        ),
+        drawer: Drawer(child:_filterDrawer),
+        appBar: AppBar(title:_appBarSearch, actions: <Widget>[ _getActionButton()]),
+        bottomNavigationBar: getBottomAppBar(),
+      );
+  }
   }
 }
