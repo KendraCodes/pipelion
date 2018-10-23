@@ -5,7 +5,9 @@ import 'dart:io';
 import 'dart:convert';
 import 'json_loader.dart';
 import 'dart:async';
+import 'package:video_player/video_player.dart';
 import 'package:flutter/gestures.dart';
+import 'package:chewie/chewie.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -105,6 +107,17 @@ class PostCardState extends State<PostCard> {
   }
   PostData n;
   FlutterWebviewPlugin webView;
+  VideoPlayerController _controller;
+
+  void initState() {
+    super.initState();
+    _controller = VideoPlayerController.network(
+      'http://students.cs.byu.edu/~csivek/pipelion/' + n.content,
+    )
+    ..initialize().then((_) {
+      setState(() {});
+    });
+  }
 
   Image getSlackImage() {
     return Image.asset("assets/images/slack.png", width:50.0, height:50.0);
@@ -196,11 +209,19 @@ class PostCardState extends State<PostCard> {
           fit:BoxFit.contain);
         break;
       case ContentAPI.CORY_VIDEO:
-
+        if (_controller.value.initialized){
+          return Chewie(_controller, 
+          aspectRatio: _controller.value.aspectRatio, 
+          autoPlay: true, 
+          looping: true,
+          autoInitialize: true,);
+        } else {
+          return Container();
+        }
         break;
       case ContentAPI.SKETCHFAB:
       
-        DrawWebView(new Rect.fromLTWH(0.0,0.0,MediaQuery.of(context).size.width, 300.0), MediaQuery.of(context).size.width, 300.0);
+        //DrawWebView(new Rect.fromLTWH(0.0,0.0,MediaQuery.of(context).size.width, 300.0), MediaQuery.of(context).size.width, 300.0);
         return getSketchFabThumbnail(n.content);
 
         break;

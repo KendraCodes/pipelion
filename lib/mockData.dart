@@ -120,7 +120,7 @@ List rawPostsList = [
     "assetID": "H3RB678fFH",
     "assetName": "Grendel",
     "contentAPI": "CORY_VIDEO",
-    "contentID": "ballVikings.mp4",
+    "contentID": "content/ballVikings.mp4",
     "department": "CharacterFX",
     "timestamp": "2018-08-06 17:01:33Z",
     "slackLink": "https://pipelion.slack.com/archives/CCLEGUTJL/p1539304004000100?thread_ts=1539304004.000100&cid=CCLEGUTJL",
