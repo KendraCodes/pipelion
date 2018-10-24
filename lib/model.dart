@@ -2,6 +2,9 @@ library viewModel;
 import 'package:flutter/material.dart';
 import 'json_loader.dart';
 import 'main.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
 
 enum ContentAPI {
   CORY, CORY_VIDEO, VIMEO, SLACK, SKETCHFAB
@@ -12,14 +15,14 @@ ContentAPI makeContentApiFromString(String apiStr) {
   switch (apiStr.toLowerCase()) {
     case "cory":
       return ContentAPI.CORY;
-    case "cory_video":
-      return ContentAPI.CORY_VIDEO;
     case "vimeo":
       return ContentAPI.VIMEO;
     case "slack":
       return ContentAPI.SLACK;
     case "sketchfab":
       return ContentAPI.SKETCHFAB;
+    case "cory_video":
+      return ContentAPI.CORY_VIDEO;
     default:
       return ContentAPI.CORY;
   }
@@ -29,6 +32,9 @@ var viewModel = new ViewModel();
 
 class ViewModel { 
 
+  Function setMainListDirty;
+
+  State<StatefulWidget> _homeWidget;
   List<PostData> _posts;
   List<AssetData> _assets;
   List<NotificationData> _notifications;
@@ -41,21 +47,117 @@ class ViewModel {
     _focusedPosts = new List<PostData>();
   }
 
-  void populatePosts(List<String> filters) {
-    _posts = loadPosts(filters);
+  void initialize(State<StatefulWidget> homeWidget) {
+    _homeWidget = homeWidget;
+    getModelData(_homeWidget);
   }
 
-  void populateFocusedPosts(String filter) {
+  Future<void> getModelData(State<StatefulWidget> statefulWidget) async {
+    await populateAssets([]);
+    await populatePosts([]);
+    await populateNotifications("");
+    if (statefulWidget != null) {
+      statefulWidget.setState((){});
+    }
+  }
+
+  Future<void> populatePosts(List<String> filters) async {
+    final response = await http.get('http://10.37.199.17:8113/posts');
+      if (response.statusCode == 200) {
+        List<Map> listPosts = List<Map>.from(json.decode(response.body));
+        for (Map post in listPosts) {
+          _posts.add(PostData.fromJson(post));
+        }
+      } 
+    if (setMainListDirty != null) {
+      setMainListDirty();
+    }
+  }
+
+  Future<void> populateFocusedPosts(String filter) async {
     List<String> filters = [filter];
-    _focusedPosts = loadPosts(filters);
+    final response = await http.get('http://10.37.199.17:8113/focusedPosts');
+    if (response.statusCode == 200) {
+        List<Map> listPosts = List<Map>.from(json.decode(response.body));
+        for (Map post in listPosts) {
+          _posts.add(PostData.fromJson(post));
+        }
+      } 
+    if (setMainListDirty != null) {
+      setMainListDirty();
+    }
   }
 
-  void populateAssets(List<String> filters) {
-    _assets = loadAssets(filters);
+  Future<void> populateAssets(List<String> filters) async {
+    final response = await http.get('http://10.37.199.17:8113/assets');
+    if (response.statusCode == 200) {
+        List<Map> listAssets = List<Map>.from(json.decode(response.body));
+        for (Map asset in listAssets) {
+          _assets.add(AssetData.fromJson(asset));
+        }
+      } 
+    if (setMainListDirty != null) {
+      setMainListDirty();
+    }
   }
 
-  void populateNotifications(String userID) {
-    _notifications = loadNotifications(userID);
+  Future<void> populateNotifications(String userID) async {
+    final response = await http.get('http://10.37.199.17:8113/notifications');
+    if (response.statusCode == 200) {
+        List<Map> listNotifs = List<Map>.from(json.decode(response.body));
+        for (Map notif in listNotifs) {
+          _notifications.add(NotificationData.fromJson(notif));
+        }
+      } 
+    if (setMainListDirty != null) {
+      setMainListDirty();
+    }
+  }
+
+  Future<void> filter(Page currentPage, List<Filter> filters) async {
+    List<String> httpFilters = [];
+    for(Filter filter in filters) {
+      if (filter.filtered) {
+        httpFilters.add(filter.name);
+      }
+    }
+
+    switch(currentPage) {
+      case Page.assets:
+        _assets.clear();
+        if (setMainListDirty != null) {
+          setMainListDirty();
+        }
+        final response = await http.post('http://10.37.227.210:8113/assets', body: json.encode({"departmentFilters" : httpFilters}));
+        if (response.statusCode == 200) {
+          List<Map> listAssets = List<Map>.from(json.decode(response.body));
+          for (Map asset in listAssets) {
+            _assets.add(AssetData.fromJson(asset));
+          }
+        } 
+      break;
+      case Page.notifications:
+
+      break;
+      case Page.posts:
+        _posts.clear();
+        if (setMainListDirty != null) {
+          setMainListDirty();
+        }
+        final response = await http.post('http://10.37.227.210:8113/assets', body: json.encode({"departmentFilters" : httpFilters}));
+        if (response.statusCode == 200) {
+          List<Map> listPosts = List<Map>.from(json.decode(response.body));
+          for (Map post in listPosts) {
+            _posts.add(PostData.fromJson(post));
+          }
+        } 
+      break;
+    }
+    
+    if (setMainListDirty != null) {
+      setMainListDirty();
+    }
+    
   }
 
   List<PostData> get posts => _posts;
@@ -93,12 +195,14 @@ class PostData {
   }
 
   PostData.fromJson(Map item) {
+    print("\n\n\n\n\n\n\n\n\n\n\n\n\n");
+    print(item);
     _id = item["id"];
     _artistID = item["artistID"];
     _artistName = item["artistName"];
     _assetID = item["assetID"];
     _assetName = item["assetName"];
-    _contentAPI = makeContentApiFromString(item["contentAPI"]);
+    _contentAPI = ContentAPI.values[int.parse(item["contentAPI"])];
     _content = item["contentID"];
     _department = item["department"];
     _timestamp = DateTime.parse(item["timestamp"]);
@@ -138,8 +242,8 @@ class AssetData {
     _id = item["id"];
     _name = item["name"];
     _thumbnail = item["thumbnail"];
-    _postIDs = item["postIDs"];
-    _departments = item["departments"];
+    _postIDs = List<String>.from(item["postIDs"]);
+    _departments = List<String>.from(item["departments"]);
   }
 
   String get id => _id;
@@ -179,7 +283,6 @@ class NotificationData {
   String toString() {
     return _message;
   }
-
 
   String get id => _id;
 

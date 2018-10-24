@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'appbarsearch.dart';
 import 'filterdrawer.dart';
+import 'json_loader.dart';
+import 'dart:convert';
 import 'cards.dart';
 import 'model.dart';
 import 'main_list_view.dart';
+import 'package:http/http.dart' as http;
 
 void main() => runApp(new Pipelion());
 
@@ -60,9 +63,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   _MyHomePageState() {
-    viewModel.populateAssets([]);
-    viewModel.populatePosts([]);
-    viewModel.populateNotifications("");
+    viewModel.initialize(this);
 
     _showFilters = false;
     _currentPage = Page.posts;
@@ -71,6 +72,8 @@ class _MyHomePageState extends State<MyHomePage> {
     _appBarSearch = new AppBarSearch(_updateSearch, _onSearchPressed);
     _filterDrawer = new FilterDrawer(_updateFilters, _getFilters);
     _mainListView = new MainListView();
+
+    _initializeFilters();
   }
 
   bool _showFilters;
@@ -89,8 +92,22 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  Future<void> _initializeFilters() async {
+    final response = await http.get('http://10.37.227.210:8113/get/departments');
+    if (response.statusCode == 200) {
+      List<String> departments = List<String>.from(json.decode(response.body));
+      print(departments.length);
+      _filters = new List<Filter>();
+      for (String department in departments){
+        print(department);
+        _filters.add(new Filter(department,false));
+      }
+    }
+  }
+
   void _updateFilters(List<Filter> filters) {
     
+    viewModel.filter(_currentPage, filters);
     _filterDrawer.myState.setState((){
       _filters = filters;
     });

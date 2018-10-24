@@ -30,6 +30,7 @@ class _MainListViewState extends State<MainListView> {
 
   _MainListViewState() {
     currentPage = Page.posts;
+    viewModel.setMainListDirty = this.setDirty;
   }
 
   void _setCurrentPage(Page page) {
@@ -37,6 +38,10 @@ class _MainListViewState extends State<MainListView> {
       currentPage = page;
       
     });
+  }
+
+  void setDirty() {
+    setState(() {});
   }
 
   Page currentPage;
