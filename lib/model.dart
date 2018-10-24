@@ -62,16 +62,7 @@ class ViewModel {
   }
 
   Future<void> populatePosts(List<String> filters) async {
-    final response = await http.get('http://10.37.199.17:8113/posts');
-      if (response.statusCode == 200) {
-        List<Map> listPosts = List<Map>.from(json.decode(response.body));
-        for (Map post in listPosts) {
-          _posts.add(PostData.fromJson(post));
-        }
-      } 
-    if (setMainListDirty != null) {
-      setMainListDirty();
-    }
+    filter(Page.posts, []);
   }
 
   Future<void> populateFocusedPosts(String filter) async {
@@ -89,16 +80,7 @@ class ViewModel {
   }
 
   Future<void> populateAssets(List<String> filters) async {
-    final response = await http.get('http://10.37.199.17:8113/assets');
-    if (response.statusCode == 200) {
-        List<Map> listAssets = List<Map>.from(json.decode(response.body));
-        for (Map asset in listAssets) {
-          _assets.add(AssetData.fromJson(asset));
-        }
-      } 
-    if (setMainListDirty != null) {
-      setMainListDirty();
-    }
+    filter(Page.assets, []);
   }
 
   Future<void> populateNotifications(String userID) async {
@@ -144,7 +126,7 @@ class ViewModel {
         if (setMainListDirty != null) {
           setMainListDirty();
         }
-        final response = await http.post('http://10.37.227.210:8113/assets', body: json.encode({"departmentFilters" : httpFilters}));
+        final response = await http.post('http://10.37.227.210:8113/posts', body: json.encode({"departmentFilters" : httpFilters}));
         if (response.statusCode == 200) {
           List<Map> listPosts = List<Map>.from(json.decode(response.body));
           for (Map post in listPosts) {
@@ -202,7 +184,7 @@ class PostData {
     _artistName = item["artistName"];
     _assetID = item["assetID"];
     _assetName = item["assetName"];
-    _contentAPI = ContentAPI.values[int.parse(item["contentAPI"])];
+    _contentAPI = makeContentApiFromString(item["contentAPI"]);
     _content = item["contentID"];
     _department = item["department"];
     _timestamp = DateTime.parse(item["timestamp"]);
