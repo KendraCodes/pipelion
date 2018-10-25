@@ -81,11 +81,14 @@ class AppBarSearchState extends State<AppBarSearch> {
   TextField getSearchBox() {
     return TextField(
       decoration: InputDecoration(
-        border: UnderlineInputBorder(borderSide: BorderSide(color: Colors.white)),
+        enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.white)),
+        focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.white)),
         hintText: 'Search here',
         hintStyle: TextStyle(color:Colors.white),
-        labelStyle: TextStyle(color:Colors.white)
+        labelStyle: TextStyle(color:Colors.white),
+        counterStyle: TextStyle(color:Colors.white),
       ),
+      style: TextStyle(color:Colors.white, fontSize:18.0),
       onSubmitted: (newSearchText) {
         searchText = newSearchText;
         _updateSearchText();

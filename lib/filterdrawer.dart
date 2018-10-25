@@ -3,13 +3,13 @@ import 'main.dart';
 
 
 class FilterDrawer extends StatefulWidget {
-  FilterDrawer(void Function(List<Filter> filters) updateFilters, List<Filter> Function() getFilters) {
+  FilterDrawer(void Function(List<Filter> filters, Page page) updateFilters, List<Filter> Function(Page page) getFilters) {
     _parentUpdateFilters = updateFilters;
     _parentGetFilters = getFilters;
   }
 
-  void Function(List<Filter> filters) _parentUpdateFilters;
-  List<Filter> Function() _parentGetFilters;
+  void Function(List<Filter> filters, Page page) _parentUpdateFilters;
+  List<Filter> Function(Page page) _parentGetFilters;
 
   void setCurrentPage(Page page) {
     myState._setCurrentPage(page);
@@ -26,15 +26,15 @@ class FilterDrawer extends StatefulWidget {
 
 class FilterDrawerState extends State<FilterDrawer> {
 
-  FilterDrawerState(void Function(List<Filter> filters) updateFilters, List<Filter> Function() getFilters) {
+  FilterDrawerState(void Function(List<Filter> filters, Page page) updateFilters, List<Filter> Function(Page page) getFilters) {
     _currentPage = Page.posts;
     _parentUpdateFilters = updateFilters;
     _parentGetFilters = getFilters;
-    _filters = _parentGetFilters();
+    _filters = _parentGetFilters(_currentPage);
   }
 
-  void Function(List<Filter> filters) _parentUpdateFilters;
-  List<Filter> Function() _parentGetFilters;
+  void Function(List<Filter> filters, Page page) _parentUpdateFilters;
+  List<Filter> Function(Page page) _parentGetFilters;
 
   void _setCurrentPage(Page page) {
     setState(() {
@@ -47,27 +47,32 @@ class FilterDrawerState extends State<FilterDrawer> {
 
   @override
   Widget build(BuildContext context) {
-    return new ListView.builder(
+    return new
+        ListView.builder(
           itemCount: _filters.length,
           itemBuilder: (BuildContext context, int index) {
+            if (index == 0) {
+              return ListTile(title:Text("Filters"));
+            } else {
             return new InkWell(
 
               onTap: () {
               _filters[index].filtered = !_filters[index].filtered;
-              _parentUpdateFilters(_filters);
+              _parentUpdateFilters(_filters, _currentPage);
               Navigator.pop(context);
               },
 
               child:ListTile(leading: Checkbox(
                   onChanged: (changedTo) {
                     _filters[index].filtered = changedTo;
-                    _parentUpdateFilters(_filters);
+                    _parentUpdateFilters(_filters, _currentPage);
                     Navigator.pop(context);
                   },
                   value: _filters[index].filtered,),
                   title:Text(_filters[index].name)
                 )
               );
+            }
     });
   }
 

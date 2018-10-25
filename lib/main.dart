@@ -87,7 +87,8 @@ class _MyHomePageState extends State<MyHomePage> {
   Page _currentPage;
   String _searchText;
   SearchState _searchState;
-  List<Filter> _filters = [new Filter("Watched", true), new Filter("Materials", false)];
+  List<Filter> _postFilters = [];
+  List<Filter> _assetFilters = [];
 
   AppBarSearch _appBarSearch;
   FilterDrawer _filterDrawer;
@@ -104,24 +105,36 @@ class _MyHomePageState extends State<MyHomePage> {
     if (response.statusCode == 200) {
       List<String> departments = List<String>.from(json.decode(response.body));
       print(departments.length);
-      _filters = new List<Filter>();
+      _postFilters = new List<Filter>();
+      _assetFilters = new List<Filter>();
+      _postFilters.add(Filter("", false));
+      _assetFilters.add(Filter("", false));
       for (String department in departments){
         print(department);
-        _filters.add(new Filter(department,false));
+        _postFilters.add(new Filter(department,false));
+        _assetFilters.add(new Filter(department,false));
       }
     }
   }
 
-  void _updateFilters(List<Filter> filters) {
+  void _updateFilters(List<Filter> filters, Page page) {
     
     viewModel.filter(_currentPage, filters);
     _filterDrawer.myState.setState((){
-      _filters = filters;
+      if (_currentPage == Page.posts) {
+      _postFilters = new List<Filter>.from(filters);
+      } else {
+      _assetFilters = new List<Filter>.from(filters);
+      }
     });
   }
 
-  List<Filter> _getFilters() {
-    return _filters;
+  List<Filter> _getFilters(Page page) {
+    if (_currentPage == Page.posts) {
+      return _postFilters;
+    } else {
+      return _assetFilters;
+    }
   }
 
   void _onSearchPressed() {
