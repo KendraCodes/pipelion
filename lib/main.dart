@@ -3,7 +3,6 @@ import 'appbarsearch.dart';
 import 'filterdrawer.dart';
 import 'json_loader.dart';
 import 'dart:convert';
-import 'cards.dart';
 import 'model.dart';
 import 'main_list_view.dart';
 import 'package:http/http.dart' as http;
@@ -19,6 +18,13 @@ enum Page {
 enum SearchState {
   idle,
   searching
+}
+
+enum DataType {
+  artist,
+  asset,
+  department,
+  post
 }
 
 class Filter {
@@ -227,7 +233,7 @@ class _MyHomePageState extends State<MyHomePage> {
       return new Scaffold(
         body: SafeArea(
           child: Container(
-            color: Theme.of(context).backgroundColor,
+            color: Colors.white.withOpacity(0.0),
             child: new Center(
               child: new Column(
                 mainAxisAlignment: MainAxisAlignment.start,

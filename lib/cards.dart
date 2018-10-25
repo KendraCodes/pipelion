@@ -14,6 +14,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:http/http.dart' as http;
 import 'videoplayer.dart';
+import 'focusedscreen.dart';
 
 class AssetCard extends StatefulWidget {
 
@@ -60,6 +61,10 @@ class AssetCardState extends State<AssetCard> {
     return new Card(
         child: InkWell(
           onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => FocusedScreen(DataType.asset, n.id, n.name)),
+            );
           },
         child: Padding(padding: EdgeInsets.all(8.0),
         child: Row(
@@ -264,11 +269,19 @@ class PostCardState extends State<PostCard> {
                 Expanded(
                 child: Row(
                     children: [
-                      Text(
-                        n.artistName,
-                        textAlign: TextAlign.left,
-                        style: TextStyle(color: Colors.black, fontSize: 13.0, fontWeight: FontWeight.bold),
-                        ),
+                      GestureDetector(
+                        onTap: () {Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => FocusedScreen(DataType.artist, n.artistID, n.artistName)),
+                          );
+                        },
+                        child:
+                          Text(
+                            n.artistName,
+                            textAlign: TextAlign.left,
+                            style: TextStyle(color: Colors.black, fontSize: 13.0, fontWeight: FontWeight.bold),
+                            ),
+                      ),
                       Text(
                         " posted",
                         textAlign: TextAlign.left,
@@ -276,25 +289,38 @@ class PostCardState extends State<PostCard> {
                         ),
                       Flexible(
                         child: Container(
-                          child: Text(
+                          
+                          child: GestureDetector(
+                        onTap: () {Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => FocusedScreen(DataType.asset, n.assetID, n.assetName)),
+                          );
+                        },
+                        child: Text(
                             " " + n.assetName,
                             softWrap: false,
                             textAlign: TextAlign.left,
                             overflow: TextOverflow.fade,
                             style: TextStyle(color: Colors.black, fontSize: 13.0, fontWeight: FontWeight.bold),
                             )
-                          )
+                          ))
                       ),
                       Text(
                           " in ",
                           textAlign: TextAlign.left,
                           style: TextStyle(color: Colors.black, fontSize: 13.0, ),
                         ),
-                      Text(
+                      GestureDetector(
+                        onTap: () {Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => FocusedScreen(DataType.department, n.department, n.department)),
+                          );
+                        },
+                        child: Text(
                           " " + n.department,
                           textAlign: TextAlign.left,
                           style: TextStyle(color: Colors.black, fontSize: 13.0, fontWeight: FontWeight.bold),
-                        ),
+                        ))
                       ],
                   )),
                 ],
@@ -394,7 +420,7 @@ class NotificationCardState extends State<NotificationCard> {
 
   @override
   Widget build(BuildContext context) {
-    Color myColor = n.isSeen ? Colors.white : Colors.green[100];
+    Color myColor = n.isSeen ? Colors.white.withOpacity(0.0) : Colors.green[100].withOpacity(0.5);
     return Container(
 //        margin: const EdgeInsets.all(15.0),
 //        padding: const EdgeInsets.all(3.0),
@@ -403,29 +429,20 @@ class NotificationCardState extends State<NotificationCard> {
         border: new  Border(bottom: new BorderSide(color: Theme.of(context).dividerColor)),
       ),
 //        color: Colors.white,
-      child: ListTile(
+      child: InkWell(
+      onTap: () {
+        Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => FocusedScreen(DataType.post, n.postID, n.message)),
+            );
+        },
+        child: ListTile(
         contentPadding: EdgeInsets.symmetric(horizontal:8.0),
         leading: Container(width: 50.0,child: Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[getUserThumbnail()])),
         title:Text(n.toString(),style: new TextStyle(fontSize: 14.0),),
         subtitle:  Text(timeago.format(n.timestamp),style: new TextStyle(fontSize: 12.0),),
         )
-      
-      /*Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          
-          Padding(padding:EdgeInsets.symmetric(horizontal:8.0),child:getUserThumbnail()),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget> [
-              Text(n.toString(),style: new TextStyle(fontSize: 14.0),),
-              Text(timeago.format(n.timestamp),style: new TextStyle(fontSize: 12.0),)
-            ]
-          )
-        ]
-      ),
-      */
+    )
     );
   }
 }

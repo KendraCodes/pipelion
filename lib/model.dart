@@ -32,6 +32,8 @@ var viewModel = new ViewModel();
 
 class ViewModel { 
 
+  String ip_address = "http://35.161.135.112:8113";
+
   Function setMainListDirty;
 
   State<StatefulWidget> _homeWidget;
@@ -84,16 +86,7 @@ class ViewModel {
   }
 
   Future<void> populateNotifications(String userID) async {
-    final response = await http.get('http://35.161.135.112:8113/notifications');
-    if (response.statusCode == 200) {
-        List<Map> listNotifs = List<Map>.from(json.decode(response.body));
-        for (Map notif in listNotifs) {
-          _notifications.add(NotificationData.fromJson(notif));
-        }
-      } 
-    if (setMainListDirty != null) {
-      setMainListDirty();
-    }
+    _notifications = loadNotifications(userID);
   }
 
   Future<void> filter(Page currentPage, List<Filter> filters) async {
