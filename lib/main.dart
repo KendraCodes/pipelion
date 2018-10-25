@@ -93,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<void> _initializeFilters() async {
-    final response = await http.get('http://10.37.227.210:8113/get/departments');
+    final response = await http.get('http://35.161.135.112:8113/get/departments');
     if (response.statusCode == 200) {
       List<String> departments = List<String>.from(json.decode(response.body));
       print(departments.length);

@@ -67,7 +67,7 @@ class ViewModel {
 
   Future<void> populateFocusedPosts(String filter) async {
     List<String> filters = [filter];
-    final response = await http.get('http://10.37.199.17:8113/focusedPosts');
+    final response = await http.get('http://35.161.135.112:8113/focusedPosts');
     if (response.statusCode == 200) {
         List<Map> listPosts = List<Map>.from(json.decode(response.body));
         for (Map post in listPosts) {
@@ -84,7 +84,7 @@ class ViewModel {
   }
 
   Future<void> populateNotifications(String userID) async {
-    final response = await http.get('http://10.37.199.17:8113/notifications');
+    final response = await http.get('http://35.161.135.112:8113/notifications');
     if (response.statusCode == 200) {
         List<Map> listNotifs = List<Map>.from(json.decode(response.body));
         for (Map notif in listNotifs) {
@@ -110,7 +110,7 @@ class ViewModel {
         if (setMainListDirty != null) {
           setMainListDirty();
         }
-        final response = await http.post('http://10.37.227.210:8113/assets', body: json.encode({"departmentFilters" : httpFilters}));
+        final response = await http.post('http://35.161.135.112:8113/assets', body: json.encode({"departmentFilters" : httpFilters}));
         if (response.statusCode == 200) {
           List<Map> listAssets = List<Map>.from(json.decode(response.body));
           for (Map asset in listAssets) {
@@ -126,7 +126,7 @@ class ViewModel {
         if (setMainListDirty != null) {
           setMainListDirty();
         }
-        final response = await http.post('http://10.37.227.210:8113/posts', body: json.encode({"departmentFilters" : httpFilters}));
+        final response = await http.post('http://35.161.135.112:8113/posts', body: json.encode({"departmentFilters" : httpFilters}));
         if (response.statusCode == 200) {
           List<Map> listPosts = List<Map>.from(json.decode(response.body));
           for (Map post in listPosts) {
@@ -177,8 +177,6 @@ class PostData {
   }
 
   PostData.fromJson(Map item) {
-    print("\n\n\n\n\n\n\n\n\n\n\n\n\n");
-    print(item);
     _id = item["id"];
     _artistID = item["artistID"];
     _artistName = item["artistName"];
