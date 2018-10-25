@@ -7,6 +7,7 @@ import 'cards.dart';
 import 'model.dart';
 import 'main_list_view.dart';
 import 'package:http/http.dart' as http;
+import 'pipelion_asset_box_icons.dart';
 
 void main() => runApp(new Pipelion());
 
@@ -164,7 +165,7 @@ class _MyHomePageState extends State<MyHomePage> {
               Container(
                 decoration: getAppBarIconBG(Page.assets),
                 padding: menuButtonsPadding,
-                child: IconButton(icon: Icon(Icons.menu, color: getAppBarIconColor(Page.assets)), onPressed: _onAssetsMenuClicked,),
+                child: IconButton(icon: Icon(PipelionAssetBox.box, color: getAppBarIconColor(Page.assets)), onPressed: _onAssetsMenuClicked,),
               ),
               Container(
                 decoration: getAppBarIconBG(Page.posts),
