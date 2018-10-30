@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "296269089204",
+    "firebase_url": "https://pipelion-server.firebaseio.com",
+    "project_id": "pipelion-server",
+    "storage_bucket": "pipelion-server.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:296269089204:android:b234317c57be3bda",
+        "android_client_info": {
+          "package_name": "byuanimation.pipelion"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "296269089204-lpt488apho7pdbkdekpgoap71h5u9lig.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "byuanimation.pipelion",
+            "certificate_hash": "5476d1c2981a475f27bf96724c7b5d2e235ae67a"
+          }
+        },
+        {
+          "client_id": "296269089204-ur9lbptok00i3ol4ili82etem4nq3ktt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAo-3KUXuQuCIsSkrW_CNTkftB5cKgLPkE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "296269089204-ur9lbptok00i3ol4ili82etem4nq3ktt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
