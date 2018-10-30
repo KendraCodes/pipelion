@@ -74,7 +74,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
     _showFilters = false;
     _currentPage = Page.posts;
-    _searchText = "default search text";
     _searchState = SearchState.idle;
     _appBarSearch = new AppBarSearch(_updateSearch, _onSearchPressed);
     _filterDrawer = new FilterDrawer(_updateFilters, _getFilters);
@@ -85,7 +84,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   bool _showFilters;
   Page _currentPage;
-  String _searchText;
   SearchState _searchState;
   List<Filter> _postFilters = [];
   List<Filter> _assetFilters = [];
@@ -96,7 +94,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _updateSearch(String searchText) {
     setState(() {
-      _searchText = searchText;
+      if (_currentPage == Page.assets) {
+          viewModel.assetSearchTerm = searchText;
+          viewModel.filter(_currentPage, _assetFilters);
+        } else if (_currentPage == Page.posts) {
+          viewModel.postSearchTerm = searchText;
+          viewModel.filter(_currentPage, _postFilters);
+        }
     });
   }
 
@@ -138,11 +142,31 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _onSearchPressed() {
+    if (_searchState == SearchState.idle) {
+      _setSearchState(SearchState.searching);
+    } else {
+      _setSearchState(SearchState.idle);
+    }
+  }
+
+  void _setSearchState(SearchState searchState) {
     setState(() {
-      if (_searchState == SearchState.idle) {
-        _searchState = SearchState.searching;
+      _searchState = searchState;
+      if (_searchState == SearchState.searching) {
+        if (_currentPage == Page.assets) {
+          viewModel.assetSearchTerm = "";
+        } else if (_currentPage == Page.posts) {
+          viewModel.postSearchTerm = "";
+        }
+        viewModel.emptyList(_currentPage);
       } else {
-        _searchState = SearchState.idle;
+        if (_currentPage == Page.assets) {
+          viewModel.assetSearchTerm = "";
+          viewModel.filter(_currentPage, _assetFilters);
+        } else if (_currentPage == Page.posts) {
+          viewModel.postSearchTerm = "";
+          viewModel.filter(_currentPage, _postFilters);
+        }
       }
       _appBarSearch.setSearchState(_searchState);
     });
@@ -150,25 +174,34 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _onHomeClicked() {
     setState(() {
+      Page _oldPage = _currentPage;
       _currentPage = Page.posts;
       _appBarSearch.setCurrentPage(_currentPage);
       _mainListView.setCurrentPage(_currentPage);
+      if (_oldPage != _currentPage) _setSearchState(SearchState.idle);
+      
     });
   }
 
   void _onNotificationsClicked() {
     setState(() {
+      Page _oldPage = _currentPage;
       _currentPage = Page.notifications;
       _appBarSearch.setCurrentPage(_currentPage);
       _mainListView.setCurrentPage(_currentPage);
+      if (_oldPage != _currentPage) _setSearchState(SearchState.idle);
+
     });
   }
 
   void _onAssetsMenuClicked() {
     setState(() {
+      Page _oldPage = _currentPage;
       _currentPage = Page.assets;
       _appBarSearch.setCurrentPage(_currentPage);
       _mainListView.setCurrentPage(_currentPage);
+      if (_oldPage != _currentPage) _setSearchState(SearchState.idle);
+
     });
   }
 

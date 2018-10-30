@@ -41,6 +41,8 @@ class ViewModel {
   List<AssetData> _assets;
   List<NotificationData> _notifications;
   List<PostData> _focusedPosts;
+  String _postSearchTerm = "";
+  String _assetSearchTerm = "";
 
   ViewModel() {
     _notifications = new List<NotificationData>();
@@ -60,6 +62,20 @@ class ViewModel {
     await populateNotifications("");
     if (statefulWidget != null) {
       statefulWidget.setState((){});
+    }
+  }
+
+  Future<void> emptyList(Page page) async {
+    if (page == Page.assets) {
+      _assets.clear();
+      if (setMainListDirty != null) {
+        setMainListDirty();
+      }
+    } else if (page == Page.posts) {
+      _posts.clear();
+      if (setMainListDirty != null) {
+        setMainListDirty();
+      }
     }
   }
 
@@ -103,13 +119,24 @@ class ViewModel {
         if (setMainListDirty != null) {
           setMainListDirty();
         }
-        final response = await http.post('http://35.161.135.112:8113/assets', body: json.encode({"departmentFilters" : httpFilters}));
-        if (response.statusCode == 200) {
-          List<Map> listAssets = List<Map>.from(json.decode(response.body));
-          for (Map asset in listAssets) {
-            _assets.add(AssetData.fromJson(asset));
+        if (_assetSearchTerm == "") {
+          final response = await http.post('http://35.161.135.112:8113/assets', body: json.encode({"departmentFilters" : httpFilters}));
+          if (response.statusCode == 200) {
+            List<Map> listAssets = List<Map>.from(json.decode(response.body));
+            for (Map asset in listAssets) {
+              _assets.add(AssetData.fromJson(asset));
+            }
           }
-        } 
+        } else {
+          final response = await http.post('http://35.161.135.112:8113/assets', body: json.encode({"departmentFilters" : httpFilters, "searchTerm":_assetSearchTerm}));
+          if (response.statusCode == 200) {
+            List<Map> listAssets = List<Map>.from(json.decode(response.body));
+            for (Map asset in listAssets) {
+              _assets.add(AssetData.fromJson(asset));
+            }
+          }
+        }
+        
       break;
       case Page.notifications:
 
@@ -119,13 +146,24 @@ class ViewModel {
         if (setMainListDirty != null) {
           setMainListDirty();
         }
-        final response = await http.post('http://35.161.135.112:8113/posts', body: json.encode({"departmentFilters" : httpFilters}));
-        if (response.statusCode == 200) {
-          List<Map> listPosts = List<Map>.from(json.decode(response.body));
-          for (Map post in listPosts) {
-            _posts.add(PostData.fromJson(post));
+        if (_postSearchTerm == "") {
+          final response = await http.post('http://35.161.135.112:8113/posts', body: json.encode({"departmentFilters" : httpFilters}));
+          if (response.statusCode == 200) {
+            List<Map> listPosts = List<Map>.from(json.decode(response.body));
+            for (Map post in listPosts) {
+              _posts.add(PostData.fromJson(post));
+            }
+          } 
+        } else {
+          final response = await http.post('http://35.161.135.112:8113/posts', body: json.encode({"departmentFilters" : httpFilters, "searchTerm":_postSearchTerm}));
+          if (response.statusCode == 200) {
+            List<Map> listPosts = List<Map>.from(json.decode(response.body));
+            for (Map post in listPosts) {
+              _posts.add(PostData.fromJson(post));
+            }
           }
-        } 
+        }
+        
       break;
     }
     
@@ -139,6 +177,15 @@ class ViewModel {
   List<AssetData> get assets => _assets;
   List<NotificationData> get notifications => _notifications;
   List<PostData> get focusedPosts => _focusedPosts;
+
+  String get postSearchTerm => _postSearchTerm;
+  String get assetSearchTerm => _assetSearchTerm;
+  set postSearchTerm(String searchTerm) {
+    _postSearchTerm = searchTerm;
+  }
+  set assetSearchTerm(String searchTerm) {
+    _assetSearchTerm = searchTerm;
+  }
 
 }
 
