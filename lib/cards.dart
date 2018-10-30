@@ -39,7 +39,7 @@ class AssetCardState extends State<AssetCard> {
   CachedNetworkImage getAssetThumbnail() {
     return CachedNetworkImage(
       imageUrl: "http://students.cs.byu.edu/~csivek/pipelion/" + n.thumbnail,
-      placeholder: new CircularProgressIndicator(),
+      placeholder: new Container(height:100.0, width:100.0),
       errorWidget: new Icon(Icons.error),
       width:100.0,
       height:100.0);
@@ -152,7 +152,7 @@ class PostCardState extends State<PostCard> {
                     result = images[0]["url"];
                     return CachedNetworkImage(
                       imageUrl: result,
-                      placeholder: new CircularProgressIndicator(),
+                      placeholder: new FittedBox(fit:BoxFit.contain, child:Container(width:500.0,height:500.0)),
                       errorWidget: new Icon(Icons.error),
                       fit:BoxFit.contain);
                 }
@@ -163,7 +163,7 @@ class PostCardState extends State<PostCard> {
         } else if (response.hasError) {
           return new Icon(Icons.error);
         }   // By default, show a loading spinner
-        return CircularProgressIndicator();
+        return new FittedBox(fit:BoxFit.contain, child:Container(width:500.0,height:500.0));
       }
     );
   }
@@ -171,7 +171,7 @@ class PostCardState extends State<PostCard> {
   CachedNetworkImage getUserThumbnail() {
     return CachedNetworkImage(
       imageUrl: "http://students.cs.byu.edu/~csivek/pipelion/user_thumbnails/" + n.artistID + ".png",
-      placeholder: new CircularProgressIndicator(),
+      placeholder: new FittedBox(fit:BoxFit.contain, child:Container(width:30.0,height:30.0)),
       errorWidget: new Icon(Icons.error),
       width:30.0,
       height: 30.0);
@@ -215,7 +215,7 @@ class PostCardState extends State<PostCard> {
       case ContentAPI.CORY: 
         return CachedNetworkImage(
           imageUrl: "http://students.cs.byu.edu/~csivek/pipelion/" + n.content,
-          placeholder: new CircularProgressIndicator(),
+          placeholder: new FittedBox(fit:BoxFit.contain, child:Container(width:500.0,height:500.0)),
           errorWidget: new Icon(Icons.error),
           fit:BoxFit.contain);
         break;
@@ -412,7 +412,7 @@ class NotificationCardState extends State<NotificationCard> {
   CachedNetworkImage getUserThumbnail() {
     return CachedNetworkImage(
       imageUrl: "http://students.cs.byu.edu/~csivek/pipelion/user_thumbnails/" + n.artistID + ".png",
-      placeholder: new CircularProgressIndicator(),
+      placeholder: new Container(width:50.0,height:50.0),
       errorWidget: new Icon(Icons.error),
       width:50.0,
       height: 50.0);
