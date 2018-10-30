@@ -451,24 +451,33 @@ class NotificationCardState extends State<NotificationCard> {
       height: 50.0);
   }
 
+  Color getNotificationColor(){
+    if (n.isSeen){
+      return Colors.white.withOpacity(0.0);
+    } else {
+      return Colors.green[100].withOpacity(0.5);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    Color myColor = n.isSeen ? Colors.white.withOpacity(0.0) : Colors.green[100].withOpacity(0.5);
     return Container(
 //        margin: const EdgeInsets.all(15.0),
 //        padding: const EdgeInsets.all(3.0),
       decoration: new BoxDecoration(
-        color: myColor,
+        color: getNotificationColor(),
         border: new  Border(bottom: new BorderSide(color: Theme.of(context).dividerColor)),
       ),
 //        color: Colors.white,
       child: InkWell(
       onTap: () {
+        setState(() {
+        n.setIsSeen();
         Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => FocusedScreen(DataType.post, n.postID, n.message)),
             );
-        },
+        } );},
         child: ListTile(
         contentPadding: EdgeInsets.symmetric(horizontal:8.0),
         leading: Container(width: 50.0,child: Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[getUserThumbnail()])),
