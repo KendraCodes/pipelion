@@ -56,6 +56,14 @@ class AssetCardState extends State<AssetCard> {
     return new Text(result, style: TextStyle(fontSize:10.0));
   }
 
+  Icon getNotificationIcon() {
+    if (viewModel.isWatched(n.id)){
+      return Icon(Icons.notifications, color: Colors.deepPurple,);
+    } else {
+      return Icon(Icons.add_alert, color: Colors.grey,);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Card(
@@ -67,13 +75,17 @@ class AssetCardState extends State<AssetCard> {
             );
           },
         child: Padding(padding: EdgeInsets.all(8.0),
-        child: Row(
+        child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
+            Container(
+            child: Row(
+            children: <Widget>[
             getAssetThumbnail(),
             Padding(padding: EdgeInsets.only(right:8.0)),
-            Container(
+              Container(
               height:100.0,
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget> [
@@ -81,7 +93,13 @@ class AssetCardState extends State<AssetCard> {
                   children: <Widget> [Text(n.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24.0)),
                 Text("Last updated [] ago")]),
                 Row(mainAxisAlignment:MainAxisAlignment.start, children: <Widget>[getDepartmentTags()])
-              ])),
+              ]),)])),
+            IconButton(
+              icon: getNotificationIcon(),
+              iconSize: 32.0, 
+              tooltip: 'Toggle Notifications for this Asset',
+              onPressed: () { setState(() {viewModel.toggleNotification(n.id);}); },
+            )
           ]
         )))
     );
@@ -244,6 +262,14 @@ class PostCardState extends State<PostCard> {
     return "Grendel";
   }
 
+  Icon getNotificationIcon() {
+    if (viewModel.isWatched(n.assetID)){
+      return Icon(Icons.notifications, color: Colors.deepPurple,);
+    } else {
+      return Icon(Icons.add_alert, color: Colors.grey,);
+    }
+  }
+
   _launchURL() async {
     if (await canLaunch(n.slackLink)) {
       await launch(n.slackLink);
@@ -340,8 +366,15 @@ class PostCardState extends State<PostCard> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
+                  InkWell(
+                  onTap: () { setState(() {viewModel.toggleNotification(n.assetID);}); },
+                  child: Container(
+                  width: 30.0,
+                  height: 30.0,
+                  child: Center(
+                  child: getNotificationIcon()
+                  ))),
                   Text(timeago.format(n.timestamp)),
-                  Text("👁 You watch this asset")
                 ]
               )
               ),

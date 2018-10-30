@@ -41,6 +41,7 @@ class ViewModel {
   List<AssetData> _assets;
   List<NotificationData> _notifications;
   List<PostData> _focusedPosts;
+  List<String> _watchedAssets;
   String _postSearchTerm = "";
   String _assetSearchTerm = "";
 
@@ -49,6 +50,7 @@ class ViewModel {
     _posts = new List<PostData>();
     _assets = new List<AssetData>();
     _focusedPosts = new List<PostData>();
+    _watchedAssets = new List<String>();
   }
 
   void initialize(State<StatefulWidget> homeWidget) {
@@ -185,6 +187,19 @@ class ViewModel {
   }
   set assetSearchTerm(String searchTerm) {
     _assetSearchTerm = searchTerm;
+  }
+
+  bool isWatched(String assetID) {
+    return _watchedAssets.contains(assetID);
+  }
+
+  void toggleNotification(String assetID) {
+    if (_watchedAssets.contains(assetID)) {
+      _watchedAssets.remove(assetID);
+    } else {
+      _watchedAssets.add(assetID);
+    }
+    setMainListDirty();
   }
 
 }
