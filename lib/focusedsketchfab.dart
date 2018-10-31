@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
 import 'model.dart';
-import 'main.dart';
-import 'dart:io';
-import 'dart:convert';
-import 'json_loader.dart';
-import 'dart:async';
 import 'package:video_player/video_player.dart';
 import 'package:flutter/gestures.dart';
 import 'package:chewie/chewie.dart';
