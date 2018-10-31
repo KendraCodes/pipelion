@@ -44,6 +44,7 @@ class ViewModel {
   List<String> _watchedAssets;
   String _postSearchTerm = "";
   String _assetSearchTerm = "";
+  String _currentArtist;
 
   ViewModel() {
     _notifications = new List<NotificationData>();
@@ -51,6 +52,7 @@ class ViewModel {
     _assets = new List<AssetData>();
     _focusedPosts = new List<PostData>();
     _watchedAssets = new List<String>();
+    _currentArtist = "KendraGraham";
   }
 
   void initialize(State<StatefulWidget> homeWidget) {
@@ -59,12 +61,36 @@ class ViewModel {
   }
 
   Future<void> getModelData(State<StatefulWidget> statefulWidget) async {
+    await getWatchedAssets();
     await populateAssets([]);
     await populatePosts([]);
-    await populateNotifications("");
+    await populateNotifications();
     if (statefulWidget != null) {
       statefulWidget.setState((){});
     }
+  }
+
+  Future<void> getWatchedAssets() async {
+    final response = await http.get('http://35.161.135.112:8113/artists/watching/' + _currentArtist);
+    if (response.statusCode == 200) {
+        _watchedAssets = List<String>.from(json.decode(response.body));
+      } 
+  }
+
+  Future<void> setWatchedAssets(String assetID, bool isWatching) async {
+    final response = await http.post('http://35.161.135.112:8113/artists/watching/set', 
+      body: json.encode({"artistID" : "KendraGraham", "assetID": assetID, "watching": isWatching}));
+    if (response.statusCode == 200) {
+        print("Success set Watched");
+      } 
+  }
+
+  Future<void> setSeenNotification(String notificationID, bool isSeen) async {
+    final response = await http.post('http://35.161.135.112:8113/notifications/update/' + _currentArtist, 
+      body: json.encode({"notificationID" : notificationID, "isRead": isSeen}));
+    if (response.statusCode == 200) {
+        print("Success set notification seen");
+      } 
   }
 
   Future<void> emptyList(Page page) async {
@@ -103,8 +129,14 @@ class ViewModel {
     filter(Page.assets, []);
   }
 
-  Future<void> populateNotifications(String userID) async {
-    _notifications = loadNotifications(userID);
+  Future<void> populateNotifications() async {
+    final response = await http.get('http://35.161.135.112:8113/notifications/get/' + _currentArtist);
+    if (response.statusCode == 200) {
+        List<Map> listNotifications = List<Map>.from(json.decode(response.body));
+        for (Map notification in listNotifications) {
+          _notifications.add(NotificationData.fromJson(notification));
+        }
+      } 
   }
 
   Future<void> filter(Page currentPage, List<Filter> filters) async {
@@ -194,11 +226,13 @@ class ViewModel {
   }
 
   void toggleNotification(String assetID) {
-    if (_watchedAssets.contains(assetID)) {
+    bool isWatching = _watchedAssets.contains(assetID);
+    if (isWatching) {
       _watchedAssets.remove(assetID);
     } else {
       _watchedAssets.add(assetID);
     }
+    setWatchedAssets(assetID, !isWatching);
     setMainListDirty();
   }
 
@@ -326,6 +360,7 @@ class NotificationData {
   bool get isSeen => _isSeen;
   void setIsSeen() {
     _isSeen = true;
+    viewModel.setSeenNotification(_id, _isSeen);
   }
 
   DateTime get timestamp => _timestamp;
