@@ -6,6 +6,7 @@ import 'dart:convert';
 import 'json_loader.dart';
 import 'dart:async';
 import 'package:video_player/video_player.dart';
+import 'package:photo_view/photo_view.dart';
 import 'package:flutter/gestures.dart';
 import 'package:chewie/chewie.dart';
 import 'package:timeago/timeago.dart' as timeago;
@@ -200,11 +201,18 @@ class PostCardState extends State<PostCard> {
   Widget getContent() {
     switch(n.contentAPI) {
       case ContentAPI.CORY: 
-        return CachedNetworkImage(
+        return GestureDetector(
+          onTap: () {
+            Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PhotoView(imageProvider: NetworkImage("http://students.cs.byu.edu/~csivek/pipelion/" + n.content),)),
+                );
+            },
+          child: CachedNetworkImage(
           imageUrl: "http://students.cs.byu.edu/~csivek/pipelion/" + n.content,
           placeholder: new FittedBox(fit:BoxFit.contain, child:Container(width:500.0,height:500.0)),
           errorWidget: new Icon(Icons.error),
-          fit:BoxFit.contain);
+          fit:BoxFit.contain));
         break;
       case ContentAPI.CORY_VIDEO:
        return new NetworkPlayerLifeCycle(
