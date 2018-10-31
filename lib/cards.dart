@@ -93,7 +93,7 @@ class AssetCardState extends State<AssetCard> {
                 children: <Widget> [
                   Column(crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget> [Text(n.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24.0)),
-                Text("Last updated [] ago")]),
+                Text("Updated " + timeago.format(n.timestamp).replaceAll(new RegExp(r'about '), ''), )]),
                 Row(mainAxisAlignment:MainAxisAlignment.start, children: <Widget>[getDepartmentTags()])
               ]),)])),
             IconButton(

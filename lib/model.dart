@@ -264,6 +264,7 @@ class AssetData {
   String _thumbnail;
   List<String> _postIDs;
   List<String> _departments;
+  DateTime _timestamp;
 
   AssetData(String id, String name, String thumbnail, List<String> postIDs, List<String> departments) {
     _id = id;
@@ -279,6 +280,7 @@ class AssetData {
     _thumbnail = item["thumbnail"];
     _postIDs = List<String>.from(item["postIDs"]);
     _departments = List<String>.from(item["departments"]);
+    _timestamp = DateTime.parse(item["timestamp"]);
   }
 
   String get id => _id;
@@ -286,6 +288,7 @@ class AssetData {
   String get thumbnail => _thumbnail;
   List<String> get postIDs => _postIDs;
   List<String> get departments => _departments;
+  DateTime get timestamp => _timestamp;
   
 }
 
