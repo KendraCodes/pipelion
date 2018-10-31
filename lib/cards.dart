@@ -15,6 +15,7 @@ import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:http/http.dart' as http;
 import 'videoplayer.dart';
 import 'focusedscreen.dart';
+import 'focusedsketchfab.dart';
 
 class AssetCard extends StatefulWidget {
 
@@ -130,7 +131,6 @@ class PostCardState extends State<PostCard> {
     this.n = n;
   }
   PostData n;
-  FlutterWebviewPlugin webView;
   VideoPlayerController _controller;
 
   void initState() {
@@ -195,38 +195,7 @@ class PostCardState extends State<PostCard> {
       height: 30.0);
   }
 
-  void DrawWebView(Rect rect, double width, double height) {
-    if (webView != null) {
-      webView.dispose();
-      webView = null;
-    }
-    webView = new FlutterWebviewPlugin();
-    webView.launch(
-      "",
-      rect: rect
-    );
-    
-    webView.evalJavascript('''
-    document.write(`
-    <div class="sketchfab-embed-wrapper">
-    <iframe width="''' + width.toString() + '''" height="''' + height.toString() + '''"
-    src="
-    '''
-    + "https://sketchfab.com/models/" + n.content + "/embed?autospin=0.2&amp;autostart=1&amp;camera=0" +
-    '''
-    frameborder="0" allow="autoplay; fullscreen; vr" mozallowfullscreen="true" webkitallowfullscreen="true">
-    </iframe>
-    </div>
-    `);
-    ''');
-  }
 
-  void DismissWebView() {
-    if (webView != null) {
-      webView.dispose();
-      webView = null;
-    }
-  }
   
   Widget getContent() {
     switch(n.contentAPI) {
@@ -248,7 +217,14 @@ class PostCardState extends State<PostCard> {
       case ContentAPI.SKETCHFAB:
       
         //DrawWebView(new Rect.fromLTWH(0.0,0.0,MediaQuery.of(context).size.width, 300.0), MediaQuery.of(context).size.width, 300.0);
-        return getSketchFabThumbnail(n.content);
+        return GestureDetector(
+          onTap: () {
+            Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => FocusedSketchfab(n)),
+                );
+            },
+          child: Stack(alignment: Alignment(0.0,0.0),children: <Widget> [getSketchFabThumbnail(n.content), Opacity(opacity:0.75,child:Image.asset("assets/images/sketchfab.png", width:100.0, height:100.0, ))]));
 
         break;
       case ContentAPI.SLACK: 
