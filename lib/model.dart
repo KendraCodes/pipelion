@@ -324,6 +324,9 @@ class NotificationData {
   String get artistID => _artistID;
 
   bool get isSeen => _isSeen;
+  void setIsSeen() {
+    _isSeen = true;
+  }
 
   DateTime get timestamp => _timestamp;
 
